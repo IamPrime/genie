@@ -8,18 +8,28 @@ export default function Nav() {
     return (
         <nav className="flex justify-between items-center py-10">
             <Link href={"/"}>Logo</Link>
-            <ul>
-                {(
-                    <Link href={"/auth/Login"}>
-                        <a className="py-2 px-4 text-lg bg-purple-800 text-amber-300 rounded-lg font-medium ml-8">
-                            Login
-                        </a>
-                    </Link>
-                ) && !user}
+            <ul className="flex items-center gap-10">
+                <a className="text-lg font-medium" href="#">
+                    About
+                </a>
+                {!user && (
+                    <div>
+                        <Link href={"/auth/Login"} className="py-2 px-4 text-lg bg-purple-800 text-amber-300 rounded-lg font-medium ml-8">
+                            Join now
+                        </Link>
+                    </div>
+                )}
                 {user && (
-                    <Link href={"/private/Dashboard"}>
-                        <img src={user.photoURL} alt="Avatar" />
-                    </Link>
+                    <div>
+                        <Link href={"/private/Dashboard"}>
+                            <img
+                                referrerPolicy="no-referrer"
+                                className="w-12 rounded-full"
+                                src={user.photoURL}
+                                alt="Avatar"
+                            />
+                        </Link>
+                    </div>
                 )}
             </ul>
         </nav>
