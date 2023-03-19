@@ -1,6 +1,17 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+# Project Blueblood | Genie
+
+## Genie is the first web app to be developed by the team. Other apps will be coming soon
+
+### The team is comprised of 4 Purdue University Students
+
+* Primus
+* Tanuja
+* Keerthika
+* Reshma
+
 ## Getting Started
 
 First , run:
@@ -20,7 +31,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ### Icons
 
-npm i react-icons
+npm i react-icons --save | Let's you easily get any Icons - Material, FontAwesome, etc.
 
 ### Hooks
 
@@ -28,7 +39,13 @@ npm i react-firebase-hooks | Let's you easily import the user and check if the u
 
 # Explanations
 
-* NOTE -  If the user signed in, display username
+* NOTE -  If the user is signed in, display username
 
 * import {useAuthState} from 'react-firebase-hooks';
 * import {auth} from '../../utils/firebase';
+
+* NOTE - Our pages are being rendered using the Layout
+
+* all the components are being passed into the Layout component which is then passed into the App.
+* We will take care to rectify this
+

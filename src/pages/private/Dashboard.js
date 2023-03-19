@@ -1,6 +1,7 @@
 import { auth } from "../../../utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useRouter } from "next/router";
+import QuizzeD from './QuizzeD';
 
 export default function Dashboard() {
     const route = useRouter();
@@ -11,8 +12,16 @@ export default function Dashboard() {
     if (user) {
         return (
             <>
-                <h2>{user.displayName} Genie is glad you are here!!</h2>
-                <button onClick={() => auth.signOut()}>Sign Out</button>
+                <div className="flex justify-between items-center md:container md:mx-auto bg-purple-800 rounded-lg text-amber-300 px-10">
+                    <div className="flex justify-center items-center">
+                        <h2>{user.displayName}</h2>
+                        <p>&nbsp; Genie is glad you are here!!</p>
+                    </div>
+                    <button onClick={() => auth.signOut()} className="rounded-full bg-red-500 px-6">Sign Out</button>
+                </div>
+                <section>
+                    <QuizzeD />
+                </section>
             </>
         );
     }

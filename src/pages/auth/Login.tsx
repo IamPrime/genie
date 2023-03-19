@@ -34,12 +34,14 @@ export default function Login() {
             const result = await signInWithPopup(auth, provider);
 
             const credence = await FacebookAuthProvider.credentialFromResult(result);
-            const token = credence.accessToken;
+            const token = credence?.accessToken;
 
             const photoUrl =
                 result.user.photoURL + '?height=500&access_token=' + token;
 
-            await updateProfile(auth.currentUser, { photoURL: photoUrl });
+            if (auth.currentUser) {
+                await updateProfile(auth.currentUser, { photoURL: photoUrl });
+            }
 
             router.push('/private/Dashboard');
         } catch (error) {

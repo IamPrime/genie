@@ -1,4 +1,5 @@
 import Nav from "./Nav";
+import QuizHome from "../pages/private/QuizzeD";
 
 export default function Layout({ children }) {
     return (
