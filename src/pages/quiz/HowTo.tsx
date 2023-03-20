@@ -25,7 +25,7 @@ export default function HowTo() {
                                 </li>
                                 <li><strong>Lifeline: &nbsp;</strong>Each quiz has 2 lifelines namely:
                                     <ul className="list-inside">
-                                        <li><strong>50-50 chances: &nbsp;</strong> Two (2)</li>
+                                        <li><strong>Toss-Up: &nbsp;</strong> Two (2)</li>
                                         <li><strong>Hints: &nbsp;</strong> Five (5)</li>
                                     </ul>
                                 </li>
