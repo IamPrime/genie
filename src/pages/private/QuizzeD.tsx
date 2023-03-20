@@ -15,8 +15,11 @@ export default function QuizzeD() {
                         <GiNotebook className='w-32 md:w-48 lg:w-52 h-32 md:h-48 lg:h-52' />
                     </span>
                 </div>
-                <h1>Genie | Fun Quizzes </h1>
-                <div className='button w-32 rounded-full bg-green-600 text-center'>
+                <h1 className='text-amber-800'>
+                    <strong>Genie </strong> 
+                    | Fun Quizzes For Everyone
+                </h1>
+                <div className='button w-32 rounded-full bg-green-600 text-center mt-3 text-amber-300'>
                     <ul>
                         <li>
                             <Link href={'/quiz/HowTo'}>Play</Link>

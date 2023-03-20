@@ -2,7 +2,10 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
-import {BsFacebook, BsTwitter, BsInstagram, BsLinkedin} from 'react-icons/bs'
+import {
+  BsFacebook, BsTwitter, BsInstagram,
+  BsLinkedin, BsYoutube, BsGithub, BsWhatsapp
+} from 'react-icons/bs'
 import { FcGoogle } from 'react-icons/fc'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -69,70 +72,58 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex items-center space-x-7 bg-gray-500 cursor-pointer text-white p-4 rounded-md text-center shadow-xl">
-              {/* Facebook */}
-              <BsFacebook
-                className="btn text-blue-300 w-20 h-20"
-                href="#!"
-                role="button"
-              />
-              {/* Twitter */}
-              <BsTwitter
-                className="btn text-blue-600 w-20 h-20"
-                href="#!"
-                role="button"
-              />
-              {/* Google */}
-              <FcGoogle
-                className="btn text-white w-20 h-20"
-                href="#!"
-                role="button"
-              />
-              {/* Instagram */}
-              <BsInstagram
-                className="btn text-purple-300 w-20 h-20"
-                href="#!"
-                role="button"
-              />
-              {/* Linkedin */}
-              <BsLinkedin
-                className="btn text-blue-900"
-                href="#!"
-                role="button"
-              />
-              
-              {/* Stack overflow */}
-              <a
-                className="btn text-white"
-                href="#!"
-                role="button"
-              >
-                <i className="fab fa-stack-overflow" />
-              </a>
-              {/* Youtube */}
-              <a
-                className="btn text-white"
-                href="#!"
-                role="button"
-              >
-                <i className="fab fa-youtube" />
-              </a>
-              {/* Github */}
-              <a
-                className="btn text-white"
-                href="#!"
-                role="button"
-              >
-                <i className="fab fa-github" />
-              </a>
-              {/* Whatsapp */}
-              <a
-                className="btn text-white"
-                href="#!"
-                role="button"
-              >
-                <i className="fab fa-whatsapp" />
-              </a>
+            <div className=' bg-gray-500 cursor-pointer text-white p-4 rounded-md text-center shadow-xl'>
+              <div className="mt-2 font-bold">We Are Social</div>
+              <div className="flex items-center space-x-7">
+                {/* Facebook */}
+                <BsFacebook
+                  className="btn text-blue-300 w-20 h-20"
+                  href="#!"
+                  role="button"
+                />
+                {/* Twitter */}
+                <BsTwitter
+                  className="btn text-blue-600 w-20 h-20"
+                  href="#!"
+                  role="button"
+                />
+                {/* Google */}
+                <FcGoogle
+                  className="btn text-white w-20 h-20"
+                  href="#!"
+                  role="button"
+                />
+                {/* Instagram */}
+                <BsInstagram
+                  className="btn text-purple-300 w-20 h-20"
+                  href="#!"
+                  role="button"
+                />
+                {/* Linkedin */}
+                <BsLinkedin
+                  className="btn text-blue-900 w-20 h-20"
+                  href="#!"
+                  role="button"
+                />
+                {/* Youtube */}
+                <BsYoutube
+                  className="btn text-red-800 w-20 h-20"
+                  href="#!"
+                  role="button"
+                />
+                {/* Github */}
+                <BsGithub
+                  className="btn text-black w-20 h-20"
+                  href="#!"
+                  role="button"
+                />
+                {/* Whatsapp */}
+                <BsWhatsapp
+                  className="btn text-green-500 w-20 h-20"
+                  href="#!"
+                  role="button"
+                />
+              </div>
             </div>
 
             <div
