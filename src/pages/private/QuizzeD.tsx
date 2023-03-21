@@ -9,17 +9,17 @@ export default function QuizzeD() {
             <Head>
                 <title>Genie | Quiz Home</title>
             </Head>
-            <section className='grid justify-center items-center bg-purple-200 rounded-lg mt-4 py-10'>
-                <div>
+            <section className='grid justify-center items-center bg-purple-200 rounded-lg py-10 border-2 border-amber-300'>
+                <div className='items-center'>
                     <span>
-                        <GiNotebook className='w-32 md:w-48 lg:w-52 h-32 md:h-48 lg:h-52' />
+                        <GiNotebook className='w-28 md:w-32 lg:w-48 h-28 md:h-32 lg:h-48' />
                     </span>
                 </div>
-                <h1 className='text-amber-800'>
+                <h1 className=' text-amber-800 text-center'>
                     <strong>Genie </strong> 
                     | Fun Quizzes For Everyone
                 </h1>
-                <div className='button w-32 rounded-full bg-green-600 text-center mt-3 text-amber-300'>
+                <div className='ml-5 button w-32 rounded-full bg-green-600 text-center mt-3 text-amber-300'>
                     <ul>
                         <li>
                             <Link href={'/quiz/HowTo'}>Play</Link>

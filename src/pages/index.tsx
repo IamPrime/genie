@@ -16,7 +16,7 @@ export default function Home() {
       <Head>
         <title>Genie | Fun Quizzes</title>
       </Head>
-      <div className="w-full m-h-screen py-12 bg-white">
+      <div className="w-full m-h-screen py-12 bg-white mt-10 rounded-lg border-2 border-amber-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="lg:text-center">
             <p className="mt-2 text-blue-800 text-3xl leading-8 font-extrabold tracking-tight sm:text-4xl">Welcome to Project Blueblood</p>

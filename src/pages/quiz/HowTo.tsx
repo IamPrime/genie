@@ -7,7 +7,7 @@ export default function HowTo() {
             <Head>
                 <title>Genie | Quiz Instructions</title>
             </Head>
-            <section className="container leading-relaxed p-10 bg-purple-800 text-amber-300 rounded-lg my-10">
+            <section className="leading-relaxed p-10 bg-purple-800 text-amber-300 rounded-lg my-10">
                 <div className="grid justify-center items-center ">
                     <article className="prose md:prose-lg lg:prose-xl dark:prose-invert">
                         <h1>How to play with the Genie</h1>

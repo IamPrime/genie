@@ -6,7 +6,7 @@ export default function About() {
         <section className="grid items-center gap-10 mt-10">
             <div className="flex justify-center space-x-10">
                 <div
-                    className="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700">
+                    className="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700 border-2 border-amber-300">
                     <a href="#!">
                         <img
                             className="rounded-t-lg"
@@ -32,7 +32,7 @@ export default function About() {
                     </div>
                 </div>
                 <div
-                    className="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700">
+                    className="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700 border-2 border-amber-300">
                     <a href="#!">
                         <img
                             className="rounded-t-lg"
@@ -60,7 +60,7 @@ export default function About() {
             </div>
             <div className="flex justify-center space-x-10">
                 <div
-                    className="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700">
+                    className="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700 border-2 border-amber-300">
                     <a href="#!">
                         <img
                             className="rounded-t-lg"
@@ -86,7 +86,7 @@ export default function About() {
                     </div>
                 </div>
                 <div
-                    className="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700">
+                    className="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700 border-2 border-amber-300">
                     <a href="#!">
                         <img
                             className="rounded-t-lg"
