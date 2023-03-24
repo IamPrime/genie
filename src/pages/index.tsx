@@ -16,126 +16,45 @@ export default function Home() {
       <Head>
         <title>Genie | Fun Quizzes</title>
       </Head>
-      <div className="w-full m-h-screen py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="lg:text-center">
-            <p className="mt-2 text-blue-800 text-3xl leading-8 font-extrabold tracking-tight sm:text-4xl">Welcome to Project Blueblood</p>
-          </div>
-
-          <div className="mt-10 space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
-            <div
-              className="bg-amber-500 cursor-pointer text-white p-4 rounded-md text-center shadow-xl">
-              <div className="mt-2 font-bold">Fun Quizzes for Everyone</div>
-              <div className="font-light">
-                <p>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Quas soluta facere officiis tempora eveniet voluptatem sit laborum laboriosam? Ea, a.
-                </p>
-              </div>
-            </div>
-
-            <div
-              className="bg-red-500 cursor-pointer text-white p-4 rounded-md text-center shadow-xl">
-              <div className="mt-2 font-bold">User Dashboard</div>
-              <div className="font-light">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Doloribus nihil consectetur deleniti iste recusandae eius?</div>
-            </div>
-
-            <div
-              className="bg-green-500 cursor-pointer text-white p-4 rounded-md text-center shadow-xl">
-              <div className="mt-2 font-bold">Admin Dashboard</div>
-              <div className="font-light">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Optio quia ad, minus excepturi maxime maiores ipsum odit, repudiandae illo, corrupti provident tenetur! Error, dicta eligendi?</div>
-            </div>
-
-            <div
-              className="bg-purple-500 cursor-pointer text-white p-4 rounded-md text-center shadow-xl">
-              <div className="mt-2 font-bold">Multiple Quiz Categories</div>
-              <div className="font-light">
-                <ol>
-                  <li>
-                    Science
-                  </li>
-                  <li>
-                    Technology
-                  </li>
-                  <li>
-                    Engineering
-                  </li>
-                  <li>
-                    Mathematics
-                  </li>
-                  <li>
-                    Social Sciences
-                  </li>
-                </ol>
-              </div>
-            </div>
-
-            <div className=' bg-gray-500 cursor-pointer text-white p-4 rounded-md text-center shadow-xl'>
-              <div className="mt-2 font-bold">We Are Social</div>
-              <div className="flex items-center space-x-7">
-                {/* Facebook */}
-                <BsFacebook
-                  className="btn text-blue-300 w-20 h-20"
-                  href="#!"
-                  role="button"
-                />
-                {/* Twitter */}
-                <BsTwitter
-                  className="btn text-blue-600 w-20 h-20"
-                  href="#!"
-                  role="button"
-                />
-                {/* Google */}
-                <FcGoogle
-                  className="btn text-white w-20 h-20"
-                  href="#!"
-                  role="button"
-                />
-                {/* Instagram */}
-                <BsInstagram
-                  className="btn text-purple-300 w-20 h-20"
-                  href="#!"
-                  role="button"
-                />
-                {/* Linkedin */}
-                <BsLinkedin
-                  className="btn text-blue-900 w-20 h-20"
-                  href="#!"
-                  role="button"
-                />
-                {/* Youtube */}
-                <BsYoutube
-                  className="btn text-red-800 w-20 h-20"
-                  href="#!"
-                  role="button"
-                />
-                {/* Github */}
-                <BsGithub
-                  className="btn text-black w-20 h-20"
-                  href="#!"
-                  role="button"
-                />
-                {/* Whatsapp */}
-                <BsWhatsapp
-                  className="btn text-green-500 w-20 h-20"
-                  href="#!"
-                  role="button"
-                />
-              </div>
-            </div>
-
-            <div
-              className="bg-blue-500 cursor-pointer text-white p-4 rounded-md text-center shadow-xl">
-              <div className="mt-2 font-bold">Coming Soon</div>
-              <div className="font-light">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Doloribus nihil consectetur deleniti iste recusandae eius?</div>
-            </div>
-
-          </div>
-        </div>
+    <div className="container my-24 px-6 mx-auto">
+  {/* Section: Design Block */}
+  <section className="mb-32 text-gray-800">
+    <div className="flex flex-wrap">
+      <div className="grow-0 shrink-0 basis-auto mb-12 md:mb-0 w-full md:w-7/12 px-3 lg:px-6">
+        <h1 className="text-3xl font-bold mb-6">Welcome to Genie Quizz</h1>
+        <p className="font-bold mb-2">Be warned: only take this quiz if you REALLY want to know.</p>
+        <p className="font-bold mb-2">Non cupidatat skateboard dolor brunch?</p>
+        <p className="text-gray-500 mb-6">
+          Distinctio corporis, iure facere ducimus quos consectetur ipsa ut
+          magnam autem doloremque ex! Id, sequi. Voluptatum magnam sed fugit
+          iusto minus et suscipit? Minima sunt at nulla tenetur, numquam unde
+          quod modi magnam ab deserunt ipsam sint aliquid dolores libero
+          repellendus cupiditate mollitia quidem dolorem odit
+        </p>
+        <p className="font-bold mb-2">
+          Praesentium voluptatibus temporibus consequatur non aspernatur?
+        </p>
+        <p className="text-gray-500 mb-6">
+          Minima sunt at nulla tenetur, numquam unde quod modi magnam ab
+          deserunt ipsam sint aliquid dolores libero repellendus cupiditate
+          mollitia quidem dolorem.
+        </p>
+        <p className="font-bold mb-2">
+          Voluptatum magnam sed fugit iusto minus et suscipit?
+        </p>
+        <p className="text-gray-500">
+          Laudantium perferendis, est alias iure ut veniam suscipit dolorem
+          fugit. Et ipsam corporis earum ea ut quae cum non iusto blanditiis
+          ipsum dolor eius reiciendis, velit adipisci quas.
+        </p>
       </div>
+      <div className="grow-0 shrink-0 basis-auto w-full md:w-5/12 px-3 lg:px-6">
+  <img src="https://cdn-gdkcp.nitrocdn.com/pXiSTObAtzysxTBOnDEDVAOrTkEKIOld/assets/images/optimized/rev-e38cc74/wp-content/uploads/2020/10/asian-girl-excited-purple-laptop-flying-icons.png" alt="Description of the image" className="w-full h-screen object-cover" />
+</div>
+    </div>
+  </section>
+  {/* Section: Design Block */}
+</div>
     </>
   )
 }
