@@ -1,12 +1,16 @@
 import Link from 'next/link';
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../utils/firebase";
 
 function Navbar() {
+    const [user, loading] = useAuthState(auth);
+
     return (
         <>
             <nav className="fixed top-0 left-0 z-20 w-full bg-white">
                 <div className="mx-50 my-2 max-w-7xl px-2 sm:px-6 lg:px-8">
                     <div className="relative flex h-16 items-center justify-between">
-                        <div className="absolute inset-y-0 left-0 flex items-center hidden">
+                        <div className="absolute inset-y-0 left-0 items-center hidden">
                             {/* Mobile menu button*/}
                             <button
                                 type="button"
@@ -15,11 +19,7 @@ function Navbar() {
                                 aria-expanded="false"
                             >
                                 <span className="sr-only">Open main menu</span>
-                                {/*
-      Icon when menu is closed.
-
-      Menu open: "hidden", Menu closed: "block"
-    */}
+                                {/*Icon when menu is closed.Menu open: "hidden", Menu closed: "block"*/}
                                 <svg
                                     className="block h-6 w-6"
                                     fill="none"
@@ -34,11 +34,7 @@ function Navbar() {
                                         d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
                                     />
                                 </svg>
-                                {/*
-      Icon when menu is open.
-
-      Menu open: "block", Menu closed: "hidden"
-    */}
+                                {/*Icon when menu is open. Menu open: "block", Menu closed: "hidden"*/}
                                 <svg
                                     className="hidden h-6 w-6"
                                     fill="none"
@@ -59,8 +55,8 @@ function Navbar() {
                             <div className="flex flex-shrink-0 items-center">
                                 <img
                                     className="object-contain h-14 w-12 animate-pulse"
-                                    src="./images/logo.png"
-                                    alt="Your Company"
+                                    src="/images/logo.png"
+                                    alt="Genie"
                                 />
                             </div>
                             <div className="hidden sm:ml-20 sm:block">
@@ -92,21 +88,33 @@ function Navbar() {
                                     >
                                         Categories
                                     </Link>
+                                    <div className="space-x-5 inset-y-0 right-0 flex flex-end pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 font-mono">
+                                        <button class="text-black hover:text-pink-700 block rounded-md px-3 py-2 text-base font-medium">
+                                            {!user && (
+                                                <div>
+                                                    <Link href={"/auth/Login"} className="bg-pink-700 text-white block rounded-md px-3 text-lg font-medium">
+                                                        Signup
+                                                    </Link>
+                                                </div>
+                                            )}
+                                            {user && (
+                                                <div>
+                                                    <Link href={"/private/Dashboard"}>
+                                                        <img
+                                                            referrerPolicy="no-referrer"
+                                                            className="w-12 rounded-full"
+                                                            src={user.photoURL}
+                                                            alt="Avatar"
+                                                        />
+                                                    </Link>
+                                                </div>
+                                            )}
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="space-x-5 absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 font-mono">
-                            <Link
-                                href={""}
-                                className="text-black hover:text-pink-700 rounded-md px-3 py-1 text-m font-medium">
-                                Login
-                            </Link>
-                            <Link
-                                href={""}
-                                className="bg-pink-700 text-white rounded-md px-3 py-1 text-m font-medium">
-                                Signup
-                            </Link>
-                        </div>
+
                     </div>
                 </div>
                 {/* Mobile menu, show/hide based on menu state. */}
@@ -138,6 +146,29 @@ function Navbar() {
                         >
                             Categories
                         </Link>
+                        <div className="space-x-5 inset-y-0 right-0 flex justify-end pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 font-mono">
+                            <button class="text-black hover:text-pink-700 block rounded-md px-3 py-2 pb-3 text-base font-medium">
+                                {!user && (
+                                    <div>
+                                        <Link href={"/auth/Login"} className="bg-pink-700 text-white block rounded-md px-3 py-2 text-base font-medium">
+                                            Signup
+                                        </Link>
+                                    </div>
+                                )}
+                                {user && (
+                                    <div>
+                                        <Link href={"/private/Dashboard"}>
+                                            <img
+                                                referrerPolicy="no-referrer"
+                                                className="w-12 rounded-full"
+                                                src={user.photoURL}
+                                                alt="Avatar"
+                                            />
+                                        </Link>
+                                    </div>
+                                )}
+                            </button>
+                        </div>
                     </div>
                 </div>
             </nav>
