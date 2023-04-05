@@ -14,6 +14,20 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+* Create a [`.env.local`] file in the root directory
+* and fill in the details from your firebase setup.
+* This is an example
+
+```bash
+NEXT_PUBLIC_API_KEY=
+NEXT_PUBLIC_AUTH_DOMAIN=appName.firebaseapp.com
+NEXT_PUBLIC_PROJECT_ID=
+NEXT_PUBLIC_STORAGE_BUCKET=appName.appspot.com
+NEXT_PUBLIC_MESSAGING_SENDER_ID=
+NEXT_PUBLIC_APP_ID=
+NEXT_PUBLIC_MEASUREMENT_ID=
+```
+
 First , run:
 npm install
 
@@ -48,4 +62,3 @@ npm i react-firebase-hooks | Let's you easily import the user and check if the u
 
 * all the components are being passed into the Layout component which is then passed into the App.
 * We will take care to rectify this
-
