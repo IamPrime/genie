@@ -57,7 +57,8 @@ export default function HomePage() {
                                 <VideoPlayer videoUrl="./videos/Genie.mp4" onClose={handleCloseVideoPlayer} />
                             )}
                             <img
-                                src="https://cdn-gdkcp.nitrocdn.com/pXiSTObAtzysxTBOnDEDVAOrTkEKIOld/assets/images/optimized/rev-e38cc74/wp-content/uploads/2020/10/asian-girl-excited-purple-laptop-flying-icons.png"
+                                //src="https://cdn-gdkcp.nitrocdn.com/pXiSTObAtzysxTBOnDEDVAOrTkEKIOld/assets/images/optimized/rev-e38cc74/wp-content/uploads/2020/10/asian-girl-excited-purple-laptop-flying-icons.png"
+                                src="./images/HPImage.png"
                                 alt="Description of the image"
                                 className="w-full h-screen object-cover"
                             />

@@ -96,12 +96,16 @@ function Navbar() {
                             </div>
                         </div>
                         <div className="space-x-5 absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 font-mono">
-                            <button class="text-black hover:text-pink-700 block rounded-md px-3 py-2 text-base font-medium">
+                            <Link
+                                href={""}
+                                className="text-black hover:text-pink-700 rounded-md px-3 py-1 text-m font-medium">
                                 Login
-                            </button>
-                            <button class="bg-pink-700 text-white block rounded-md px-3 py-2 text-base font-medium">
+                            </Link>
+                            <Link
+                                href={""}
+                                className="bg-pink-700 text-white rounded-md px-3 py-1 text-m font-medium">
                                 Signup
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </div>
