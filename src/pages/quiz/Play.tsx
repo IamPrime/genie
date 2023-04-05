@@ -119,8 +119,8 @@ class Play extends React.Component<{}, State> {
         return (
             <div>
                 <Head><title>Genie | Quiz 1</title></Head>
-                <section className="container bg-gray-300 rounded-lg p-5 border-solid border-2 border-amber-300">
-                    <div className="flex justify-between items-center container pb-4">
+                <section className="bg-gray-300 rounded-lg p-5 border-solid border-2 border-amber-300 mt-10">
+                    <div className="flex justify-between items-center pb-4">
                         <p className="inline-flex items-center">
                             <span>
                                 <GiLifeInTheBalance />
@@ -134,7 +134,7 @@ class Play extends React.Component<{}, State> {
                             <p className="px-1">2</p>
                         </p>
                     </div>
-                    <div className="flex justify-between items-center container pb-4">
+                    <div className="flex justify-between items-center pb-4">
                         <p>
                             <span>1 of 15</span>
                         </p>

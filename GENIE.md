@@ -29,7 +29,12 @@ NEXT_PUBLIC_MEASUREMENT_ID=
 ```
 
 First , run:
+
+```bash
 npm install
+# or 
+npm setup
+```
 
 Second, run the development server:
 
@@ -45,20 +50,26 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ### Icons
 
-npm i react-icons --save | Let's you easily get any Icons - Material, FontAwesome, etc.
+```bash
+npm i react-icons --save # | Let's you easily get any Icons - Material, FontAwesome, etc.
+```
 
 ### Hooks
 
-npm i react-firebase-hooks | Let's you easily import the user and check if the user is ther or not
+```bash
+npm i react-firebase-hooks # | Let's you easily import the user and check if the user is ther or not
+```
 
 # Explanations
 
-* NOTE -  If the user is signed in, display username
+## Documentation
+
+### NOTE -  If the user is signed in, display username
 
 * import {useAuthState} from 'react-firebase-hooks';
 * import {auth} from '../../utils/firebase';
 
-* NOTE - Our pages are being rendered using the Layout
+### NOTE - Our pages are being rendered using the Layout
 
 * all the components are being passed into the Layout component which is then passed into the App.
 * We will take care to rectify this

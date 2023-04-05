@@ -3,7 +3,7 @@
 //opens a video player component with a demo of the platform. The video player is conditionally rendered based on the 'showVideoPlayer' state variable, which 
 //managed by two functions 'handleOpenVideoPlayer' and 'handleCloseVideoPlayer'.
 
-//In the second sectio, there is a heading and a paragraph that describe the features of this website. There is also an image with a QR code and a text that invites 
+//In the second section, there is a heading and a paragraph that describe the features of this website. There is also an image with a QR code and a text that invites 
 //users to join the Genie.com app.
 import { useState } from "react";
 import VideoPlayer from "./VideoPlayer";

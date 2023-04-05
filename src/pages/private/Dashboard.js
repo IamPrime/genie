@@ -12,16 +12,14 @@ export default function Dashboard() {
     if (user) {
         return (
             <>
-                <div className="flex justify-between items-center md:container md:mx-auto bg-purple-800 rounded-lg text-amber-300 px-7 mt-7 mb-7 h-10">
+                <div className="flex justify-between items-center md:mx-auto bg-purple-800 rounded-lg text-amber-300 px-7 mt-7 mb-7 h-10">
                     <div className="flex items-center">
                         <h2 className="pr-3"><strong>{user.displayName}</strong></h2>
                         <p className="flex gap-1"><h3>Genie</h3> is glad you are here!!</p>
                     </div>
                     <button onClick={() => auth.signOut()} className="rounded-full bg-red-500 px-6">Sign Out</button>
                 </div>
-                <section>
-                    <QuizzeD />
-                </section>
+                <QuizzeD />
             </>
         );
     }
