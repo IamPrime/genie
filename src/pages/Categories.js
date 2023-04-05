@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link';
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
@@ -14,9 +15,9 @@ export default function Categories() {
                 <div className="relative">
                     <a href="#!">
                         <div className="group block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700">
-                            <Image
+                            <img
                                 className="rounded-t-lg"
-                                src="https://wallpapercave.com/wp/AAynoYp.jpg?c=7&r=0&o=5&dpr=1.3&pid=1.7"
+                                src="./images/science.png"
                                 alt=""
                                 width={640}
                                 height={427}
@@ -37,7 +38,7 @@ export default function Categories() {
                                     <div className="bg-white p-8 rounded-lg shadow-lg text-center">
                                         <p className="font-bold text-lg">Learn More</p>
                                         <p className="text-gray-600 mt-4">
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at urna eu tellus ullamcorper tristique.
+                                        Science is a systematic endeavor that builds and organizes knowledge in the form of testable explanations and predictions about the universe. The earliest written records of identifiable predecessors to modern science come from Ancient Egypt and Mesopotamia from around 3000 to 1200 BCE.
                                         </p>
                                     </div>
                                 </div>
@@ -53,9 +54,9 @@ export default function Categories() {
                     <a href="#!">
                         <div className="group block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700">
 
-                            <Image
+                            <img
                                 className="rounded-t-lg"
-                                src="https://wallpapercave.com/dwp1x/wp10045399.jpg"
+                                src="./images/technology.png"
                                 alt=""
                                 width={640}
                                 height={427}
@@ -92,9 +93,9 @@ export default function Categories() {
                     <a href="#!">
                         <div className="group block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700">
 
-                            <Image
+                            <img
                                 className="rounded-t-lg"
-                                src="https://wallpapercave.com/wp/wp2598989.png"
+                                src="./images/maths.png"
                                 alt=""
                                 width={640}
                                 height={427}
@@ -104,6 +105,124 @@ export default function Categories() {
                                 <h5
                                     className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
                                     Mathematics
+                                </h5>
+                                <div className="flex items-center">
+                                    <FontAwesomeIcon icon={faStar} className="text-yellow-400 mr-1" />
+                                    <FontAwesomeIcon icon={faStar} className="text-yellow-400 mr-1" />
+                                    <FontAwesomeIcon icon={faStar} className="text-yellow-400 mr-1" />
+                                    <FontAwesomeIcon icon={faStar} className="text-yellow-400 mr-1" />
+                                    <FontAwesomeIcon icon={faStar} className="text-gray-300 mr-1" />
+                                    <span className="text-sm text-gray-500">(3)</span>
+                                </div>
+                                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute top-0 left-0 w-full h-full flex justify-center items-center">
+                                    <div className="bg-white p-8 rounded-lg shadow-lg text-center">
+                                        <p className="font-bold text-lg">Learn More</p>
+                                        <p className="text-gray-600 mt-4">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at urna eu tellus ullamcorper tristique.
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div className="flex justify-center space-x-10">
+                <div className="relative">
+                    <a href="#!">
+                        <div className="group block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700">
+                            <img
+                                className="rounded-t-lg"
+                                src="./images/engineering.png"
+                                alt=""
+                                width={640}
+                                height={427}
+                            />
+                            <div className="p-6">
+                                <h5 className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+                                    Engineering
+                                </h5>
+                                <div className="flex items-center">
+                                    <FontAwesomeIcon icon={faStar} className="text-yellow-500 mr-1" />
+                                    <FontAwesomeIcon icon={faStar} className="text-yellow-500 mr-1" />
+                                    <FontAwesomeIcon icon={faStar} className="text-yellow-500 mr-1" />
+                                    <FontAwesomeIcon icon={faStar} className="text-yellow-500 mr-1" />
+                                    <FontAwesomeIcon icon={faStar} className="text-gray-400 mr-1" />
+                                    <span className="text-sm text-gray-600">(24)</span>
+                                </div>
+                                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute top-0 left-0 w-full h-full flex justify-center items-center">
+                                    <div className="bg-white p-8 rounded-lg shadow-lg text-center">
+                                        <p className="font-bold text-lg">Learn More</p>
+                                        <p className="text-gray-600 mt-4">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at urna eu tellus ullamcorper tristique.
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </a>
+
+                </div>
+
+                <div className="relative">
+                    <a href="#!">
+                        <div className="group block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700">
+
+                            <img
+                                className="rounded-t-lg"
+                                src="./images/sss.png"
+                                alt=""
+                                width={640}
+                                height={427}
+                            />
+
+                            <div className="p-6">
+                                <h5
+                                    className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+                                    Social Sciences
+                                </h5>
+                                <div className="flex items-center">
+                                    <FontAwesomeIcon icon={faStar} className="text-yellow-400 mr-1" />
+                                    <FontAwesomeIcon icon={faStar} className="text-yellow-400 mr-1" />
+                                    <FontAwesomeIcon icon={faStar} className="text-yellow-400 mr-1" />
+                                    <FontAwesomeIcon icon={faStar} className="text-yellow-400 mr-1" />
+                                    <FontAwesomeIcon icon={faStar} className="text-gray-300 mr-1" />
+                                    <span className="text-sm text-gray-500">(3)</span>
+                                </div>
+                                <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 absolute top-0 left-0 w-full h-full flex justify-center items-center">
+                                    <div className="bg-white p-8 rounded-lg shadow-lg text-center">
+                                        <p className="font-bold text-lg">Learn More</p>
+                                        <p className="text-gray-600 mt-4">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut at urna eu tellus ullamcorper tristique.
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </a>
+                </div>
+                <div className="relative">
+                    <a href="#!">
+                        <div className="group block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700">
+
+                            <img
+                                className="rounded-t-lg"
+                                src="./images/generalknowledge.jpg"
+                                alt=""
+                                width={640}
+                                height={427}
+                            />
+
+                            <div className="p-6">
+                                <h5
+                                    className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+                                    General Knowledge
                                 </h5>
                                 <div className="flex items-center">
                                     <FontAwesomeIcon icon={faStar} className="text-yellow-400 mr-1" />
