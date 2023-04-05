@@ -1,11 +1,12 @@
-import Nav from "./Nav";
-import QuizHome from "../pages/private/QuizzeD";
+import Navbar from "./Navbar";
+import Footer from "./Footer"
 
-export default function Layout({ children }) {
+export default function Layout({children}){
     return (
-        <div className="mx-10">
-            <Nav />
+        <div>
+            <Navbar />
             <main>{children}</main>
+            <Footer/>
         </div>
-    )
+    );
 }
