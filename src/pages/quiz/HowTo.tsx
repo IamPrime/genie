@@ -12,7 +12,7 @@ export default function HowTo() {
                     <article className="prose md:prose-lg lg:prose-xl dark:prose-invert">
                         <h1>How to play with the Genie</h1>
                         <h3>Ensure to read the instructions before you start</h3>
-                        <p>
+                        <div>
                             <ul className="list-outside">
                                 <li><strong>Game Duration: &nbsp;</strong>15 total minutes is allowed for each quiz type.</li>
                                 <li><strong>Questions Available: &nbsp;</strong> 15 total questions for each quiz type.</li>
@@ -37,7 +37,7 @@ export default function HowTo() {
                                 </li>
                                 <li>Timer: Starts as soon as the game loads.</li>
                             </ul>
-                        </p>
+                        </div>
                     </article>
                 </div>
                 <div className="flex justify-between items-center">
