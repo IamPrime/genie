@@ -1,8 +1,17 @@
+import React, { useState } from 'react';
 import Link from 'next/link';
+import DropDown from "./DropDown";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../utils/firebase";
 
+
 function Navbar() {
+
+    const [showDropdown, setShowDropdown] = useState(false);
+
+    const toggleDropdown = () => {
+        setShowDropdown(!showDropdown);
+    };
     const [user, loading] = useAuthState(auth);
 
     return (
@@ -88,17 +97,23 @@ function Navbar() {
                                     >
                                         Categories
                                     </Link>
-                                    <div className="space-x-5 inset-y-0 right-0 flex flex-end pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 font-mono">
-                                        <button class="text-black hover:text-pink-700 block rounded-md px-3 py-2 text-base font-medium">
+                                    <div className="relative space-x-5 inset-y-0 right-0 flex flex-end pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 font-mono">
+                                        <button
+                                            onClick={toggleDropdown}
+                                            className="text-black hover:text-pink-700 block rounded-md px-3 py-2 text-base font-medium"
+                                        >
                                             {!user && (
                                                 <div>
-                                                    <Link href={"/auth/Login"} className="bg-pink-700 text-white block rounded-md px-3 py-1 text-m font-medium">
+                                                    <Link
+                                                        href={"/auth/Login"}
+                                                        className="bg-pink-700 text-white block rounded-md px-3 py-1 text-m font-medium"
+                                                    >
                                                         Signup
                                                     </Link>
                                                 </div>
                                             )}
                                             {user && (
-                                                <div>
+                                                <div className="relative">
                                                     <Link href={"/private/Dashboard"}>
                                                         <img
                                                             referrerPolicy="no-referrer"
@@ -107,9 +122,15 @@ function Navbar() {
                                                             alt="Avatar"
                                                         />
                                                     </Link>
+                                                    {showDropdown && (
+                                                        <div className="absolute top-full mt-2 right-0 z-10">
+                                                            <DropDown />
+                                                        </div>
+                                                    )}
                                                 </div>
                                             )}
                                         </button>
+
                                     </div>
                                 </div>
                             </div>
@@ -147,7 +168,9 @@ function Navbar() {
                             Categories
                         </Link>
                         <div className="space-x-5 inset-y-0 right-0 flex justify-end pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 font-mono">
-                            <button class="text-black hover:text-pink-700 block rounded-md px-3 py-2 pb-3 text-base font-medium">
+                            <button
+                                onClick={toggleDropdown}
+                                className="text-black hover:text-pink-700 block rounded-md px-3 py-2 pb-3 text-base font-medium">
                                 {!user && (
                                     <div>
                                         <Link href={"/auth/Login"} className="bg-pink-700 text-white block rounded-md px-3 py-2 text-base font-medium">
@@ -168,6 +191,11 @@ function Navbar() {
                                     </div>
                                 )}
                             </button>
+                            {showDropdown && (
+                                <div className="relative top-12 right-0 z-10">
+                                    <DropDown />
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
