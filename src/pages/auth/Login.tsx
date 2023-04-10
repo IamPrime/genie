@@ -55,31 +55,79 @@ export default function Login() {
     }, [user]);
 
     return (
-        <div className="shadow-xl mt-32 p-10 text-lg bg-purple-800 text-amber-300 rounded-lg ">
-            <h2 className="text-3xl font-medium">Login</h2>
-            <div className="py-4">
-                <h3 className="py-4">Login with your preferred Platform</h3>
+        <section className="h-screen">
+            <div className="container h-full px-6 py-24">
+                <div className="g-6 flex h-full flex-wrap items-center justify-center lg:justify-between">
+                    {/* Left column container with background*/}
+                    <div className="mb-12 md:mb-0 md:w-8/12 lg:w-6/12">
+                        <img
+                            src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+                            className="w-full"
+                            alt="Phone image"
+                        />
+                    </div>
+                    {/* Right column container with form */}
+                    <div className="md:w-8/12 lg:ml-6 lg:w-5/12">
+                        <form>
+                            {/* Social login buttons */}
+                            <a
+                                onClick={handleGoogleLogin}
+                                href="#!"
+                                role="button"
+                                className="mb-3 flex justify-center rounded bg-info px-7 pb-2.5 pt-3 text-center text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#54b4d3] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)]"
+                                style={{ backgroundColor: "#dd4b39" }}
+                                data-te-ripple-init
+                                data-te-ripple-color="light"
+                            >
+                                <div  className="flex items-center">
+                                    <div>
+                                        <FcGoogle className="text-2xl" />
+                                    </div>
+                                    <div className="ml-2">
+                                        Continue with Google
+                                    </div>
+                                </div>
+                            </a>
+                            <a
+                                onClick={handleFacebookLogin}
+                                className="mb-3 flex justify-center rounded bg-primary px-7 pb-2.5 pt-3 text-center text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
+                                style={{ backgroundColor: "#3b5998" }}
+                                href="#!"
+                                role="button"
+                                data-te-ripple-init
+                                data-te-ripple-color="light"
+                            >
+                                {/* Facebook */}
+                                <div className="flex items-center">
+                                    <div>
+                                        <FaFacebook className="text-2xl text-blue-500" />
+                                    </div>
+                                    <div className="ml-2">
+                                        Continue with Facebook
+                                    </div>
+                                </div>
+                            </a>
+                            <a
+                                className="mb-3 flex justify-center rounded bg-info px-7 pb-2.5 pt-3 text-center text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#54b4d3] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)]"
+                                style={{ backgroundColor: "#55acee" }}
+                                href="#!"
+                                role="button"
+                                data-te-ripple-init
+                                data-te-ripple-color="light"
+                            >
+                                <div className="flex items-center">
+                                    <div>
+                                        <MdEmail className="text-2xl text-white" />
+                                    </div>
+                                    <div className="ml-2">
+                                        Continue with Email
+                                    </div>
+                                </div>
+                            </a>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div className="flex flex-col gap-4">
-                <button
-                    onClick={handleGoogleLogin}
-                    className="text-amber-300 bg-gray-700 p-4 w-full font-medium rounded-lg flex align-middle gap-6"
-                >
-                    <FcGoogle className="text-2xl" />
-                    Sign in With Google
-                </button>
-                <button
-                    onClick={handleFacebookLogin}
-                    className="text-amber-300 bg-gray-700 p-4 w-full font-medium rounded-lg flex align-middle gap-6"
-                >
-                    <FaFacebook className="text-2xl text-blue-500" />
-                    Sign in With Facebook
-                </button>
-                <button className="text-amber-300 bg-gray-700 p-4 w-full font-medium rounded-lg flex align-middle gap-6">
-                    <MdEmail className="text-2xl text-white" />
-                    Sign in With Email
-                </button>
-            </div>
-        </div>
+        </section>
     );
 }
