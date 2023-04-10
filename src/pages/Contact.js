@@ -19,11 +19,12 @@ export default function Contact() {
                         aria-hidden="false"
                         tabIndex="0" />
                 </div>
-                <div className="container text-gray-800 px-4 md:px-12">
+
+                {/** Contact Us Form */}
+                <div className="container text-gray-800 px-4 md:px-12 mt-20">
                     <div
                         className="block rounded-lg shadow-lg py-10 md:py-12 px-2 md:px-6"
                         style={{
-                            marginTop: "-50px",
                             background: "hsla(0, 0%, 100%, 0.8)",
                             backdropFilter: "blur(30px)",
                         }}

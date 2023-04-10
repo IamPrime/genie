@@ -1,4 +1,5 @@
 import { GoMarkGithub } from 'react-icons/go';
+import Image from 'next/image';
 
 
 export default function About() {
@@ -8,10 +9,10 @@ export default function About() {
                 <div
                     className="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700 border-2 border-amber-300">
                     <a href="#!">
-                        <img
+                        <Image
                             className="rounded-t-lg"
-                            src="https://tecdn.b-cdn.net/img/new/standard/nature/184.jpg"
-                            alt="" />
+                            src="/images/technology.png"
+                            alt="" width={150} height={150} />
                     </a>
                     <div className="p-6">
                         <h5
@@ -34,10 +35,10 @@ export default function About() {
                 <div
                     className="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700 border-2 border-amber-300">
                     <a href="#!">
-                        <img
+                        <Image
                             className="rounded-t-lg"
-                            src="https://tecdn.b-cdn.net/img/new/standard/nature/184.jpg"
-                            alt="" />
+                            src="/images/technology.png"
+                            alt="" width={150} height={150} />
                     </a>
                     <div className="p-6">
                         <h5
@@ -62,10 +63,10 @@ export default function About() {
                 <div
                     className="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700 border-2 border-amber-300">
                     <a href="#!">
-                        <img
+                        <Image
                             className="rounded-t-lg"
-                            src="https://tecdn.b-cdn.net/img/new/standard/nature/184.jpg"
-                            alt="" />
+                            src="/images/technology.png"
+                            alt="" width={150} height={150} />
                     </a>
                     <div className="p-6">
                         <h5
@@ -88,10 +89,10 @@ export default function About() {
                 <div
                     className="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700 border-2 border-amber-300">
                     <a href="#!">
-                        <img
+                        <Image
                             className="rounded-t-lg"
-                            src="https://tecdn.b-cdn.net/img/new/standard/nature/184.jpg"
-                            alt="" />
+                            src="/images/technology.png"
+                            alt="" width={150} height={150} />
                     </a>
                     <div className="p-6">
                         <h5

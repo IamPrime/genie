@@ -7,6 +7,7 @@
 //users to join the Genie.com app.
 import { useState } from "react";
 import VideoPlayer from "./VideoPlayer";
+import Image from "next/image";
 
 export default function HomePage() {
     const [showVideoPlayer, setShowVideoPlayer] = useState(false)
@@ -44,7 +45,7 @@ export default function HomePage() {
                                     strokeWidth="1.5"
 
                                     strokeLineCap="round"
-                                    strokeLineJoin="round"
+                                    strokeLinejoin="round"
                                     className="w-34 h-28 hover:w-38 hover:h-32 absolute top-1/2 z-10 transform -translate-y-1/2 -translate-x-1/2 transition-all duration-300 mobile-svg-center"
                                     style={{ zIndex: 10 }}
                                     stroke="none"
@@ -56,11 +57,12 @@ export default function HomePage() {
                             {showVideoPlayer && (
                                 <VideoPlayer videoUrl="./videos/Genie.mp4" onClose={handleCloseVideoPlayer} />
                             )}
-                            <img
+                            <Image
                                 //src="https://cdn-gdkcp.nitrocdn.com/pXiSTObAtzysxTBOnDEDVAOrTkEKIOld/assets/images/optimized/rev-e38cc74/wp-content/uploads/2020/10/asian-girl-excited-purple-laptop-flying-icons.png"
-                                src="./images/HPImage.png"
+                                src="/images/HPImage.png"
                                 alt="Description of the image"
                                 className="w-full h-screen object-cover"
+                                width={500} height={500}
                             />
                         </div>
                     </div>
@@ -78,7 +80,7 @@ export default function HomePage() {
                         </div>
                         <div className="mt-5 flex item-center">
                             <div className="relative mx-auto">
-                                <img
+                                <Image
                                     src="/images/bgcode.jpg"
                                     alt="Image with text"
                                     width={800}
@@ -88,7 +90,7 @@ export default function HomePage() {
                                     <p className="text-yellow-600 text-2xl font-bold">
                                         Join at <br/> Genie.com <br/>#MyApp
                                     </p>
-                                    <img src="./images/qrcode.jpg" alt="QR code" width={150} height={150}/>
+                                    <Image src="/images/qrcode.jpg" alt="QR code" width={150} height={150}/>
                                 </div>
                             </div>
                         </div>

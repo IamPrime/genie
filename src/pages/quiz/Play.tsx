@@ -1,9 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import Head from "next/head";
 import { FcPrevious, FcNext, FcAlarmClock } from "react-icons/fc";
 import { GiCancel, GiLifeInTheBalance, GiCardRandom } from "react-icons/gi";
-import questions from '../../assets/questions/questions.json';
-import { isEmpty } from "@firebase/util";
+import questions from "@/assets/questions/questions.json";
+import isEmpty from "@/utils/is-empty";
+import { alertService } from "@/utils";
+import { Alert } from "@/components";
 
 
 interface Props { }
@@ -28,7 +30,7 @@ interface State {
 
 class Play extends React.Component<{}, State> {
     state = {
-        questions: [],
+        questions,
         currentQuestion: {},
         nextQuestion: {},
         prevQuestion: {},
@@ -46,8 +48,9 @@ class Play extends React.Component<{}, State> {
     };
 
     componentDidMount = () => {
-        const { questions } = this.state;
-        this.displayQuestions(questions);
+        const { questions, currentQuestion, nextQuestion, prevQuestion } = this.state;
+
+        this.displayQuestions(questions, currentQuestion, nextQuestion, prevQuestion);
     }
 
     displayQuestions = (
@@ -76,7 +79,16 @@ class Play extends React.Component<{}, State> {
         }
     };
 
+    handleOptionClick = (e) => {
+        if (e.target.innerHTML == this.state.answer) {
+            this.correctAnswer();
+        } else {
+            this.wrongAnswer();
+        }
+    }
+
     handleNextButtonClick = () => {
+        /**Call button sound here */
         if (this.state.nextQuestion !== undefined) {
             this.setState(
                 (prevState) => ({
@@ -95,6 +107,7 @@ class Play extends React.Component<{}, State> {
     };
 
     handlePrevButtonClick = () => {
+        /**Call button sound here */
         if (this.state.prevQuestion !== undefined) {
             this.setState(
                 (prevState) => ({
@@ -112,77 +125,164 @@ class Play extends React.Component<{}, State> {
         }
     };
 
+    handleQuitButtonClick = () => {
+        /**Call button sound here */
+        if (window.confirm('Do You Want To Quit?')) {
+            window.location.href = '/private/Dashboard';
+        }
+    }
+
+    correctAnswer = () => {
+        alertService.success('Correct Answer...')
+        this.setState(
+            prevState => ({
+                score: prevState.score + 1,
+                correctAnswers: prevState.correctAnswers + 1,
+                currentQuestionIdx: prevState.currentQuestionIdx + 1,
+                numOfAnsweredQuestions: prevState.numOfAnsweredQuestions + 1
+            }),
+            () => {
+                this.displayQuestions(
+                    this.state.questions,
+                    this.state.currentQuestion,
+                    this.state.nextQuestion,
+                    this.state.prevQuestion
+                )
+            }
+        )
+    }
+
+    wrongAnswer = () => {
+        navigator.vibrate(1000);
+        alertService.error('Wrong Answer...')
+        this.setState(
+            prevState => ({
+                wrongAnswers: prevState.wrongAnswers + 1,
+                currentQuestionIdx: prevState.currentQuestionIdx + 1,
+                numOfAnsweredQuestions: prevState.numOfAnsweredQuestions + 1
+            }),
+            () => {
+                this.displayQuestions(
+                    this.state.questions,
+                    this.state.currentQuestion,
+                    this.state.nextQuestion,
+                    this.state.prevQuestion
+                )
+            }
+        )
+    }
+
+    handleHintsClick = () => {
+        console.log('Hints Clicked!');
+    }
+
 
     render() {
-        const { currentQuestion } = this.state;
+        const { currentQuestion, currentQuestionIdx, hints, tossUp, numOfQuestions } = this.state;
 
         return (
-            <div>
+            <>
                 <Head><title>Genie | Quiz 1</title></Head>
                 <section className="bg-gray-300 rounded-lg p-5 border-solid border-2 border-amber-300 mt-10">
+                    {/** Lifeline, Hints and Timer */}
                     <div className="flex justify-between items-center pb-4">
-                        <p className="inline-flex items-center">
+                        <div
+                            className="inline-flex items-center cursor-grabbing bg-gradient-to-r hover:from-sky-500 hover:to-amber-300 hover:rounded-lg"
+                        >
                             <span>
-                                <GiLifeInTheBalance />
+                                <GiLifeInTheBalance className="text-green-500 h-7 w-7 hover:text-sky-500" />
                             </span>
-                            <p className="px-1">2</p>
-                        </p>
-                        <p className="inline-flex items-center">
+                            <div className="px-1">{tossUp}</div>
+                        </div>
+                        <div
+                            className="inline-flex items-center cursor-grabbing bg-gradient-to-r hover:from-sky-500 hover:to-amber-300 hover:rounded-lg"
+                            onClick={this.handleHintsClick}
+                        >
                             <span>
-                                <GiCardRandom />
+                                <GiCardRandom className="text-green-500 h-7 w-7" />
                             </span>
-                            <p className="px-1">2</p>
-                        </p>
+                            <div className="px-1">{hints}</div>
+                        </div>
                     </div>
                     <div className="flex justify-between items-center pb-4">
-                        <p>
-                            <span>1 of 15</span>
-                        </p>
-                        <p className="inline-flex items-center">
+                        <div>
+                            <span>{currentQuestionIdx + 1} of {numOfQuestions}</span>
+                        </div>
+                        <div className="inline-flex items-center">
                             <span>
                                 <FcAlarmClock />
                             </span>
-                            <p className="px-1">7:00</p>
-                        </p>
+                            <div className="px-1">7:00</div>
+                        </div>
                     </div>
-                    <div className="grid justify-center items-center p-7">
+                    {/** Quiz Question and Answer Options */}
+                    <div className="grid justify-center items-center p-7 mb-5">
                         <div className="question container">
-                            <h1>What year was Google Founded?</h1>
+                            <h1
+                                className="flex justify-center items-center cursor-grab mb-5 font-bold text-lg hover:text-xl sm:text-base"
+                            >
+                                {currentQuestion.question}
+                            </h1>
                         </div>
                         <div className="answers container grid items-center">
-                            <div className="flex justify-between items-center gap-20 m-3">
-                                <p className="flex items-center justify-center bg-blue-400 rounded-full min-w-40 h-7 p-3">1997</p>
-                                <p className="flex items-center justify-center bg-blue-400 rounded-full min-w-40 h-7 p-3">1998</p>
+                            <div className="options flex justify-between items-center gap-20 m-3">
+                                <div
+                                    onClick={this.handleOptionClick}
+                                    className="md:w-60 flex items-center justify-center cursor-pointer bg-blue-400 rounded-full min-w-40 h-7 px-3 py-5 hover:bg-sky-700"
+                                >
+                                    {currentQuestion.optionA}
+                                </div>
+                                <div
+                                    onClick={this.handleOptionClick}
+                                    className="md:w-60 flex items-center justify-center cursor-pointer bg-blue-400 rounded-full min-w-40 h-7 px-3 py-5 hover:bg-sky-700"
+                                >
+                                    {currentQuestion.optionB}
+                                </div>
                             </div>
-                            <div className="flex justify-between items-center gap-20 m-3">
-                                <p className="flex items-center justify-center bg-blue-400 rounded-full min-w-40 h-7 p-3">2008</p>
-                                <p className="flex items-center justify-center bg-blue-400 rounded-full min-w-40 h-7 p-3">2000</p>
+                            <div className="options flex justify-between items-center gap-20 m-3">
+                                <div
+                                    onClick={this.handleOptionClick}
+                                    className="md:w-60 flex items-center justify-center cursor-pointer bg-blue-400 rounded-full min-w-40 h-7 px-3 py-5 hover:bg-sky-700"
+                                >
+                                    {currentQuestion.optionC}
+                                </div>
+                                <div
+                                    onClick={this.handleOptionClick}
+                                    className="md:w-60 flex items-center justify-center cursor-pointer bg-blue-400 rounded-full min-w-40 h-7 px-3 py-5 hover:bg-sky-700"
+                                >
+                                    {currentQuestion.optionD}
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div className="flex justify-center space-x-2">
+                    {/** Buttons | Previous, Next and Quit */}
+                    <div className="flex justify-center space-x-2 mb-7">
                         <button
+                            onClick={this.handlePrevButtonClick}
                             type="button"
                             className="inline-flex items-center rounded bg-gray-400 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#54b4d3] transition duration-150 ease-in-out hover:bg-info-600 hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)]">
                             <FcPrevious />
                             <span className="px-1">Previous</span>
                         </button>
                         <button
+                            onClick={this.handleQuitButtonClick}
                             type="button"
-                            className="inline-flex items-center rounded bg-red-500 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-600 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)]">
+                            className="inline-flex items-center rounded cursor-help bg-red-500 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-600 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)]">
                             <GiCancel />
                             <span className="px-1">Quit</span>
                         </button>
                         <button
+                            onClick={this.handleNextButtonClick}
                             type="button"
                             className="inline-flex items-center rounded bg-green-700 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)]">
                             <span className="px-1">Next</span>
                             <FcNext />
                         </button>
                     </div>
-
                 </section>
-            </div>
+                {/** Popup Alert */}
+                <Alert />
+            </>
         );
     }
 }
