@@ -6,7 +6,8 @@ import Link from "next/link";
 function DropDown() {
     const route = useRouter();
     const [user, loading] = useAuthState(auth);
-    if (!user) route.push("../HomePage");
+    if (loading) return <h1>L.O.A.D.I.N.G....</h1>;
+    if (!user) route.push("/");
     if (user) {
         return (
             <div className="bg-white rounded-md shadow-lg py-2 w-48 divide-y divide-gray-100 ">
