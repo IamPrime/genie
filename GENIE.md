@@ -73,3 +73,25 @@ npm i react-firebase-hooks # | Let's you easily import the user and check if the
 
 * all the components are being passed into the Layout component which is then passed into the App.
 * We will take care to rectify this
+
+### TODO - use-sound | an npm package for sound prompts
+
+This library only works in React DOM, but [@remigallego] created an alternative for React Native!
+Check out <https://github.com/remigallego/react-native-use-sound> react-native-use-sound.
+
+* TODO - We will look into implementing this feature at a later date; because NextJs currently does not support Audio rendering
+
+### TODO - Check the Navbar | Images tag should be used not img tag.
+
+This will fix the hydration ui issue.
+
+#### Aside ---- Next.config.js by keerthika
+
+```bash
+const nextConfig = {
+  reactStrictMode: true,}
+module.exports = {
+  images: {
+    domains: ['wallpapercave.com'], },
+  nextConfig};
+```

@@ -89,7 +89,7 @@ function Navbar() {
                                         Categories
                                     </Link>
                                     <div className="space-x-5 inset-y-0 right-0 flex flex-end pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 font-mono">
-                                        <button class="text-black hover:text-pink-700 block rounded-md px-3 py-2 text-base font-medium">
+                                        <button className="text-black hover:text-pink-700 block rounded-md px-3 py-2 text-base font-medium">
                                             {!user && (
                                                 <div>
                                                     <Link href={"/auth/Login"} className="bg-pink-700 text-white block rounded-md px-3 py-1 text-m font-medium">
@@ -147,7 +147,7 @@ function Navbar() {
                             Categories
                         </Link>
                         <div className="space-x-5 inset-y-0 right-0 flex justify-end pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 font-mono">
-                            <button class="text-black hover:text-pink-700 block rounded-md px-3 py-2 pb-3 text-base font-medium">
+                            <button className="text-black hover:text-pink-700 block rounded-md px-3 py-2 pb-3 text-base font-medium">
                                 {!user && (
                                     <div>
                                         <Link href={"/auth/Login"} className="bg-pink-700 text-white block rounded-md px-3 py-2 text-base font-medium">
@@ -173,7 +173,6 @@ function Navbar() {
                 </div>
             </nav>
         </>
-
     );
 }
 

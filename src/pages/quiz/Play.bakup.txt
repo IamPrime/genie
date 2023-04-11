@@ -25,8 +25,6 @@ interface State {
     usedTossUp: boolean;
     time: any;
     prevRandNumbers: any;
-    nextBtnDisabled: boolean;
-    prevBtnDisabled: boolean;
 }
 
 class Play extends React.Component<{}, State> {
@@ -46,9 +44,7 @@ class Play extends React.Component<{}, State> {
         tossUp: 2,
         usedTossUp: false,
         time: {},
-        prevRandNumbers: {},
-        nextBtnDisabled: false,
-        prevBtnDisabled: true
+        prevRandNumbers: {}
     };
 
     interval = null;
@@ -84,7 +80,6 @@ class Play extends React.Component<{}, State> {
                 prevRandNumbers: []
             }, () => {
                 this.showOptions();
-                this.handleDisabledButton();
             });
         }
     };
@@ -274,7 +269,7 @@ class Play extends React.Component<{}, State> {
 
     startTimer = () => {
         // Count down is equal to 5 minutes or 300,000 milliseconds
-        let countDownTimer = Date.now() + 300000;
+        let countDownTimer = Date.now() + 300000; 
 
         const intervalId = setInterval(() => {
             const now = new Date();
@@ -298,30 +293,6 @@ class Play extends React.Component<{}, State> {
             }
         }, 1000);
     };
-
-    handleDisabledButton = () => {
-        //Disable Previous Button
-        if (this.state.prevQuestion === undefined || this.state.currentQuestionIdx === 0) {
-            this.setState({
-                prevBtnDisabled: true
-            })
-        } else {
-            this.setState({
-                prevBtnDisabled: false
-            })
-        }
-
-        // Disable Next Button
-        if (this.state.nextQuestion === undefined || this.state.currentQuestionIdx + 1 === this.state.numOfQuestions) {
-            this.setState({
-                nextBtnDisabled: true
-            })
-        } else {
-            this.setState({
-                nextBtnDisabled: false
-            })
-        }
-    }
 
 
     render() {

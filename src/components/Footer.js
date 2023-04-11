@@ -9,7 +9,7 @@ import { FaYoutube } from 'react-icons/fa';
 
 export default function Footer() {
     return (
-        <footer className="w-full bg-white border-t border-gray-200 shadow md:items-center md:justify-between md:p-1 dark:bg-gray-800 dark:border-gray-600 h-22">
+        <footer className="w-full bg-white border-t border-gray-200 shadow md:items-center md:justify-between md:p-1 dark:bg-gray-800 dark:border-gray-600 h-22 fixed inset-x-0 bottom-0">
             <div className="md:flex justify-between items-center ml-5 mr-5">
                 <div>
                     <span className="text-sm text-gray-500 sm:text-center justify-start dark:text-gray-400 flex items-start flex-col">
@@ -25,7 +25,9 @@ export default function Footer() {
                             <FaWhatsapp className="w-6 h-6 text-green-400 fill-current" />
                         </span>
                         <span>
+
                             <FaLinkedin className="w-6 h-6 text-blue-500 fill-current" />
+
                         </span>
                         <span>
                             <FaInstagram className="h-6 w-6 text-pink-700 fill-current" />
@@ -37,6 +39,7 @@ export default function Footer() {
                             <FaGithub className="h-6 w-6 text-gray-500 fill-current" />
                         </span>
                         <span>
+
                             <FaYoutube className="h-6 w-6 text-red-700 fill-current" />
                         </span>
                     </div>
