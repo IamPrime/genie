@@ -3,11 +3,4 @@ const nextConfig = {
   reactStrictMode: true,
 }
 
-
-
-module.exports = {
-  images: {
-    domains: ['wallpapercave.com'],
-  },
-  nextConfig
-};
+module.exports = nextConfig

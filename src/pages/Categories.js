@@ -15,9 +15,9 @@ export default function Categories() {
                 <div className="relative">
                     <a href="#!">
                         <div className="group block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700">
-                            <img
+                            <Image
                                 className="rounded-t-lg"
-                                src="./images/science.png"
+                                src="/images/science.png"
                                 alt=""
                                 width={640}
                                 height={427}
@@ -54,9 +54,9 @@ export default function Categories() {
                     <a href="#!">
                         <div className="group block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700">
 
-                            <img
+                            <Image
                                 className="rounded-t-lg"
-                                src="./images/technology.png"
+                                src="/images/technology.png"
                                 alt=""
                                 width={640}
                                 height={427}
@@ -93,9 +93,9 @@ export default function Categories() {
                     <a href="#!">
                         <div className="group block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700">
 
-                            <img
+                            <Image
                                 className="rounded-t-lg"
-                                src="./images/maths.png"
+                                src="/images/maths.png"
                                 alt=""
                                 width={640}
                                 height={427}
@@ -133,9 +133,9 @@ export default function Categories() {
                 <div className="relative">
                     <a href="#!">
                         <div className="group block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700">
-                            <img
+                            <Image
                                 className="rounded-t-lg"
-                                src="./images/engineering.png"
+                                src="/images/engineering.png"
                                 alt=""
                                 width={640}
                                 height={427}
@@ -172,9 +172,9 @@ export default function Categories() {
                     <a href="#!">
                         <div className="group block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700">
 
-                            <img
+                            <Image
                                 className="rounded-t-lg"
-                                src="./images/sss.png"
+                                src="/images/sss.png"
                                 alt=""
                                 width={640}
                                 height={427}
@@ -211,9 +211,9 @@ export default function Categories() {
                     <a href="#!">
                         <div className="group block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700">
 
-                            <img
+                            <Image
                                 className="rounded-t-lg"
-                                src="./images/generalknowledge.jpg"
+                                src="/images/generalknowledge.jpg"
                                 alt=""
                                 width={640}
                                 height={427}
