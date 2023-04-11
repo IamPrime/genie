@@ -45,7 +45,7 @@ export default function HowTo() {
                         <Link href={"/private/Dashboard"}>Take me back</Link>
                     </span>
                     <span>
-                        <Link href={"/quiz/Play"}>Continue</Link>
+                        <Link href={"/private/quiz/Play"}>Continue</Link>
                     </span>
                 </div>
             </section>
