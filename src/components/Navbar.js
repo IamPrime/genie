@@ -51,7 +51,7 @@ function Navbar() {
                                 </svg>
                             </button>
                         </div>
-                        <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                        <div className="flex flex-1 items-center justify-center sm:justify-start">
                             <div className="flex flex-shrink-0 items-center">
                                 <img
                                     className="object-contain h-14 w-12 animate-pulse"
@@ -92,7 +92,7 @@ function Navbar() {
                                         <button className="text-black hover:text-pink-700 block rounded-md px-3 py-2 text-base font-medium">
                                             {!user && (
                                                 <div>
-                                                    <Link href={"/auth/Login"} className="bg-pink-700 text-white block rounded-md px-3 text-lg font-medium">
+                                                    <Link href={"/auth/Login"} className="bg-pink-700 text-white block rounded-md px-3 py-1 text-m font-medium">
                                                         Signup
                                                     </Link>
                                                 </div>
@@ -102,7 +102,7 @@ function Navbar() {
                                                     <Link href={"/private/Dashboard"}>
                                                         <img
                                                             referrerPolicy="no-referrer"
-                                                            className="w-12 rounded-full"
+                                                            className="w-8 rounded-full"
                                                             src={user.photoURL}
                                                             alt="Avatar"
                                                         />
