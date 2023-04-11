@@ -22,7 +22,7 @@ export default function QuizzeD() {
                 <div className='ml-5 button w-32 rounded-full bg-green-600 text-center mt-3 text-amber-300'>
                     <ul>
                         <li>
-                            <Link href={'/quiz/HowTo'}>Play</Link>
+                            <Link href={'/private/quiz/HowTo'}>Play</Link>
                         </li>
                     </ul>
                 </div>
