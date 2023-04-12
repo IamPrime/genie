@@ -24,7 +24,7 @@ interface State {
     tossUp: number;
     usedTossUp: boolean;
     time: any;
-    prevRandNumbers: any;
+    prevRandNumbers: any[];
     nextBtnDisabled: boolean;
     prevBtnDisabled: boolean;
 }
@@ -46,17 +46,15 @@ class Play extends React.Component<{}, State> {
         tossUp: 2,
         usedTossUp: false,
         time: {},
-        prevRandNumbers: {},
+        prevRandNumbers: [],
         nextBtnDisabled: false,
-        prevBtnDisabled: true
+        prevBtnDisabled: true,
+        randomNumber: null,
     };
 
-    interval = null;
-
-    componentDidMount = () => {
-        const { questions, currentQuestion, nextQuestion, prevQuestion } = this.state;
-
-        this.displayQuestions(questions, currentQuestion, nextQuestion, prevQuestion);
+    componentDidMount() {
+        const { questions } = this.state;
+        this.displayQuestions(questions);
         this.startTimer();
     }
 
@@ -87,10 +85,10 @@ class Play extends React.Component<{}, State> {
                 this.handleDisabledButton();
             });
         }
-    };
+    }
 
-    handleOptionClick = (e) => {
-        if (e.target.innerHTML == this.state.answer) {
+    handleOptionClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        if (e.currentTarget.innerHTML === this.state.answer) {
             this.correctAnswer();
         } else {
             this.wrongAnswer();
@@ -152,12 +150,16 @@ class Play extends React.Component<{}, State> {
                 numOfAnsweredQuestions: prevState.numOfAnsweredQuestions + 1
             }),
             () => {
-                this.displayQuestions(
-                    this.state.questions,
-                    this.state.currentQuestion,
-                    this.state.nextQuestion,
-                    this.state.prevQuestion
-                )
+                if (this.state.nextQuestion === undefined) {
+                    this.handleQuizEnd()
+                } else {
+                    this.displayQuestions(
+                        this.state.questions,
+                        this.state.currentQuestion,
+                        this.state.nextQuestion,
+                        this.state.prevQuestion
+                    )
+                }
             }
         )
     }
@@ -172,12 +174,16 @@ class Play extends React.Component<{}, State> {
                 numOfAnsweredQuestions: prevState.numOfAnsweredQuestions + 1
             }),
             () => {
-                this.displayQuestions(
-                    this.state.questions,
-                    this.state.currentQuestion,
-                    this.state.nextQuestion,
-                    this.state.prevQuestion
-                )
+                if (this.state.nextQuestion === undefined) {
+                    this.handleQuizEnd()
+                } else {
+                    this.displayQuestions(
+                        this.state.questions,
+                        this.state.currentQuestion,
+                        this.state.nextQuestion,
+                        this.state.prevQuestion
+                    )
+                }
             }
         )
     }
@@ -187,16 +193,16 @@ class Play extends React.Component<{}, State> {
      * that have been hidden by the lifeline buttons - Tossup and Hints
      */
     showOptions = () => {
-        const options = Array.from(document.querySelectorAll('.option'));
+        const options = document.querySelectorAll('.option');
 
-        options.forEach(option => {
+        options.forEach((option) => {
             option.style.visibility = 'visible';
         });
 
         this.setState({
-            usedTossUp: false
-        })
-    }
+            usedTossUp: false,
+        });
+    };
 
     handleHintsClick = () => {
         if (this.state.hints > 0) {
@@ -232,7 +238,8 @@ class Play extends React.Component<{}, State> {
     handleTossUpClick = () => {
         if (this.state.tossUp > 0 && this.state.usedTossUp == false) {
             const options = document.querySelectorAll('.option');
-            const randomNumbers = [];
+            const randomNumbers: (number | undefined)[] = [];
+            //const randomNumbers = [];
             let indexOfAnswer;
 
             options.forEach((option, index) => {
@@ -274,10 +281,10 @@ class Play extends React.Component<{}, State> {
 
     startTimer = () => {
         // Count down is equal to 5 minutes or 300,000 milliseconds
-        let countDownTimer = Date.now() + 300000;
+        let countDownTimer = new Date().getTime() + 300000;
 
         const intervalId = setInterval(() => {
-            const now = new Date();
+            const now = new Date().getTime();
             const distance = countDownTimer - now;
 
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -286,14 +293,15 @@ class Play extends React.Component<{}, State> {
             if (distance < 0) {
                 clearInterval(intervalId);
                 this.setState({
-                    time: { minutes: 0, seconds: 0 }
+                    time: { minutes: 0, seconds: 0 },
                 }, () => {
-                    alert("Quiz Timed Out!!");
-                    window.location.href = '/private/Dashboard';
+                    /**alert("Quiz Timed Out!!");
+                    window.location.href = '/private/Dashboard';*/
+                    this.handleQuizEnd()
                 });
             } else {
                 this.setState({
-                    time: { minutes, seconds }
+                    time: { minutes, seconds },
                 });
             }
         }, 1000);
@@ -323,6 +331,31 @@ class Play extends React.Component<{}, State> {
         }
     }
 
+    handleQuizEnd = () => {
+        alert("You have reached the last question");
+
+        const { score, numOfQuestions, numOfAnsweredQuestions, correctAnswers, wrongAnswers, tossUp, hints} = this.state;
+
+        const playerStats = {
+            score,
+            numOfQuestions,
+            //numOfAnsweredQuestions,
+            numOfAnsweredQuestions: correctAnswers + wrongAnswers,
+            correctAnswers,
+            wrongAnswers,
+            usedTossUp: 2 -tossUp,
+            usedHints: 5 - hints,
+        };
+
+        sessionStorage.setItem("playerStats", JSON.stringify(playerStats));
+
+        const dashboardUrl = "/private/Dashboard";
+        const redirectToDashboard = () => {
+            window.location.href = dashboardUrl;
+        };
+
+        setTimeout(redirectToDashboard, 1000);
+    }
 
     render() {
         const {
@@ -379,32 +412,32 @@ class Play extends React.Component<{}, State> {
                         </div>
                         <div className="answers container grid items-center">
                             <div className="options flex justify-between items-center gap-20 m-3">
-                                <div
+                                <button
                                     onClick={this.handleOptionClick}
                                     className="option md:w-60 flex items-center justify-center cursor-pointer bg-blue-400 rounded-full min-w-40 h-7 px-3 py-5 hover:bg-sky-700"
                                 >
                                     {currentQuestion.optionA}
-                                </div>
-                                <div
+                                </button>
+                                <button
                                     onClick={this.handleOptionClick}
                                     className="option md:w-60 flex items-center justify-center cursor-pointer bg-blue-400 rounded-full min-w-40 h-7 px-3 py-5 hover:bg-sky-700"
                                 >
                                     {currentQuestion.optionB}
-                                </div>
+                                </button>
                             </div>
                             <div className="options flex justify-between items-center gap-20 m-3">
-                                <div
+                                <button
                                     onClick={this.handleOptionClick}
                                     className="option md:w-60 flex items-center justify-center cursor-pointer bg-blue-400 rounded-full min-w-40 h-7 px-3 py-5 hover:bg-sky-700"
                                 >
                                     {currentQuestion.optionC}
-                                </div>
-                                <div
+                                </button>
+                                <button
                                     onClick={this.handleOptionClick}
                                     className="option md:w-60 flex items-center justify-center cursor-pointer bg-blue-400 rounded-full min-w-40 h-7 px-3 py-5 hover:bg-sky-700"
                                 >
                                     {currentQuestion.optionD}
-                                </div>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -413,21 +446,23 @@ class Play extends React.Component<{}, State> {
                         <button
                             onClick={this.handlePrevButtonClick}
                             type="button"
-                            className="inline-flex items-center rounded bg-gray-400 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#54b4d3] transition duration-150 ease-in-out hover:bg-info-600 hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)]">
+                            disabled={this.state.prevBtnDisabled}
+                            className="inline-flex items-center rounded bg-gray-700 px-6 pt-2.5 pb-2 text-xs disabled:opacity-30 font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#54b4d3] transition duration-150 ease-in-out hover:bg-info-600 hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)]">
                             <FcPrevious />
                             <span className="px-1">Previous</span>
                         </button>
                         <button
                             onClick={this.handleQuitButtonClick}
                             type="button"
-                            className="inline-flex items-center rounded cursor-help bg-red-500 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-600 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)]">
+                            className="inline-flex items-center rounded cursor-help bg-red-700 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-600 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)]">
                             <GiCancel />
                             <span className="px-1">Quit</span>
                         </button>
                         <button
                             onClick={this.handleNextButtonClick}
                             type="button"
-                            className="inline-flex items-center rounded bg-green-700 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)]">
+                            disabled={this.state.nextBtnDisabled}
+                            className="inline-flex items-center rounded bg-green-700 px-6 pt-2.5 pb-2 text-xs disabled:opacity-60 font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)]">
                             <span className="px-1">Next</span>
                             <FcNext />
                         </button>

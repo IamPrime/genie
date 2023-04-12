@@ -74,6 +74,11 @@ npm i react-firebase-hooks # | Let's you easily import the user and check if the
 * all the components are being passed into the Layout component which is then passed into the App.
 * We will take care to rectify this
 
+### TODO - ensure the quiz is only accessible from the private route
+
+* Currently, just inputing the right link will give you the quiz
+* Either move the entire quiz folder into the private folder or change the links
+
 ### TODO - use-sound | an npm package for sound prompts
 
 This library only works in React DOM, but [@remigallego] created an alternative for React Native!
