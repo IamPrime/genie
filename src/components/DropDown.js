@@ -28,6 +28,9 @@ function DropDown() {
                     <li>
                         <Link href={"/private/Profile"} className="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</Link>
                     </li>
+                    <li>
+                        <Link href={"/Categories"} className="block px-4 py-2 text-gray-800 hover:bg-gray-100">Categories</Link>
+                    </li>
                 </ul>
                 <div>
                     <button onClick={() => auth.signOut()} className="w-48 rounded-b-lg px-4 bg-gray-800 text-white text-center font-bold py-2">Sign Out</button>
