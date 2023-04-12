@@ -52,8 +52,6 @@ class Play extends React.Component<{}, State> {
         randomNumber: null,
     };
 
-    interval = null;
-
     componentDidMount() {
         const { questions } = this.state;
         this.displayQuestions(questions);
@@ -152,12 +150,16 @@ class Play extends React.Component<{}, State> {
                 numOfAnsweredQuestions: prevState.numOfAnsweredQuestions + 1
             }),
             () => {
-                this.displayQuestions(
-                    this.state.questions,
-                    this.state.currentQuestion,
-                    this.state.nextQuestion,
-                    this.state.prevQuestion
-                )
+                if (this.state.nextQuestion === undefined) {
+                    this.handleQuizEnd()
+                } else {
+                    this.displayQuestions(
+                        this.state.questions,
+                        this.state.currentQuestion,
+                        this.state.nextQuestion,
+                        this.state.prevQuestion
+                    )
+                }
             }
         )
     }
@@ -172,12 +174,16 @@ class Play extends React.Component<{}, State> {
                 numOfAnsweredQuestions: prevState.numOfAnsweredQuestions + 1
             }),
             () => {
-                this.displayQuestions(
-                    this.state.questions,
-                    this.state.currentQuestion,
-                    this.state.nextQuestion,
-                    this.state.prevQuestion
-                )
+                if (this.state.nextQuestion === undefined) {
+                    this.handleQuizEnd()
+                } else {
+                    this.displayQuestions(
+                        this.state.questions,
+                        this.state.currentQuestion,
+                        this.state.nextQuestion,
+                        this.state.prevQuestion
+                    )
+                }
             }
         )
     }
@@ -289,8 +295,9 @@ class Play extends React.Component<{}, State> {
                 this.setState({
                     time: { minutes: 0, seconds: 0 },
                 }, () => {
-                    alert("Quiz Timed Out!!");
-                    window.location.href = '/private/Dashboard';
+                    /**alert("Quiz Timed Out!!");
+                    window.location.href = '/private/Dashboard';*/
+                    this.handleQuizEnd()
                 });
             } else {
                 this.setState({
@@ -322,6 +329,33 @@ class Play extends React.Component<{}, State> {
                 nextBtnDisabled: false
             })
         }
+    }
+
+    handleQuizEnd = () => {
+        alert("You have reached the last question");
+
+        const { score, numOfQuestions, numOfAnsweredQuestions, correctAnswers, wrongAnswers, tossUp, hints} = this.state;
+
+        const playerStats = {
+            score,
+            numOfQuestions,
+            numOfAnsweredQuestions,
+            correctAnswers,
+            wrongAnswers,
+            usedTossUp: 2 -tossUp,
+            usedHints: 5 - hints,
+        };
+
+        console.log(playerStats);
+
+        sessionStorage.setItem("playerStats", JSON.stringify(playerStats));
+
+        const dashboardUrl = "/private/Dashboard";
+        const redirectToDashboard = () => {
+            window.location.href = dashboardUrl;
+        };
+
+        setTimeout(redirectToDashboard, 1000);
     }
 
     render() {
