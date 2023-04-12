@@ -90,6 +90,18 @@ Check out <https://github.com/remigallego/react-native-use-sound> react-native-u
 
 This will fix the hydration ui issue.
 
+### TODO - Remove the alert from the notification bell.
+
+Remove the alert after user has opened the message(s)
+
+## NOTE - Add a token to the admin link
+
+Only those with the token will be able to see the admin login page
+
+### TODO - Fix the style in login page
+
+Use the tailwindcss bg-color tag and not the inline style tag
+
 #### Aside ---- Next.config.js by keerthika
 
 ```bash

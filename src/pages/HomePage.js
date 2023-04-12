@@ -45,7 +45,7 @@ export default function HomePage() {
                                     strokeWidth="1.5"
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
-                                    className="w-34 h-28 hover:w-38 hover:h-32 absolute top-1/2 z-10 transform -translate-y-1/2 -translate-x-1/2 transition-all duration-300 mobile-svg-center"
+                                    className="w-34 h-28 hover:w-38 hover:h-32 absolute top-1/2 z-4 transform -translate-y-1/2 -translate-x-1/2 transition-all duration-300 mobile-svg-center"
                                     style={{ zIndex: 10 }}
                                     stroke="none"
                                 >
