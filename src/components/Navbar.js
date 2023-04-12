@@ -31,7 +31,7 @@ function Navbar() {
                 aria-expanded="false"
               >
                 <span className="sr-only">Open main menu</span>
-                {/Icon when menu is closed.Menu open: "hidden", Menu closed: "block"/}
+                {/**Icon when menu is closed.Menu open: "hidden", Menu closed: "block"*/}
                 <svg
                   className="block h-6 w-6"
                   fill="none"
@@ -46,7 +46,7 @@ function Navbar() {
                     d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
                   />
                 </svg>
-                {/Icon when menu is open. Menu open: "block", Menu closed: "hidden"/}
+                {/**Icon when menu is open. Menu open: "block", Menu closed: "hidden"*/}
                 <svg
                   className="hidden h-6 w-6"
                   fill="none"
@@ -126,14 +126,14 @@ function Navbar() {
                             className="focus:outline-none"
                           >
                             <div>
-                              
-                                <img
-                                  referrerPolicy="no-referrer"
-                                  className="w-8 rounded-full"
-                                  src={user.photoURL}
-                                  alt="Avatar"
-                                />
-                              
+
+                              <img
+                                referrerPolicy="no-referrer"
+                                className="w-8 rounded-full"
+                                src={user.photoURL}
+                                alt="Avatar"
+                              />
+
                               {showDropdown && (
                                 <div className="absolute top-full mt-2 right-0 z-10">
                                   <DropDown />
@@ -203,14 +203,14 @@ function Navbar() {
                         className="focus:outline-none"
                       >
                         <div>
-                         
-                            <img
-                              referrerPolicy="no-referrer"
-                              className="w-8 rounded-full"
-                              src={user.photoURL}
-                              alt="Avatar"
-                            />
-                         
+
+                          <img
+                            referrerPolicy="no-referrer"
+                            className="w-8 rounded-full"
+                            src={user.photoURL}
+                            alt="Avatar"
+                          />
+
                           {showDropdown && (
                             <div className="absolute top-full mt-2 right-0 z-10">
                               <DropDown />
