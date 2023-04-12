@@ -339,14 +339,13 @@ class Play extends React.Component<{}, State> {
         const playerStats = {
             score,
             numOfQuestions,
-            numOfAnsweredQuestions,
+            //numOfAnsweredQuestions,
+            numOfAnsweredQuestions: correctAnswers + wrongAnswers,
             correctAnswers,
             wrongAnswers,
             usedTossUp: 2 -tossUp,
             usedHints: 5 - hints,
         };
-
-        console.log(playerStats);
 
         sessionStorage.setItem("playerStats", JSON.stringify(playerStats));
 
