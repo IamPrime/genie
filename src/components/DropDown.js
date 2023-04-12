@@ -18,7 +18,7 @@ function DropDown() {
                         <Link href={"/private/Dashboard"} className="block px-4 py-2 text-gray-800 hover:bg-gray-100">Dashboard</Link>
                     </li>
                     <li>
-                        <Link href={"/"} className="block px-4 py-2 text-gray-800 hover:bg-gray-100">Notifications</Link>
+                        <Link href={"/private/Profile"} className="block px-4 py-2 text-gray-800 hover:bg-gray-100">Profile</Link>"
                     </li>
                 </ul>
                 <div>
