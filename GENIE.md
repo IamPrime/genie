@@ -102,6 +102,14 @@ Only those with the token will be able to see the admin login page
 
 Use the tailwindcss bg-color tag and not the inline style tag
 
+### REVIEW - theme.js
+
+* Write the hex code of any color and use ctrl+k ctrl+g from Tailwind Shades extension to generate shades of it
+
+* Use ctrl+p, then type `>`.
+* After that, find (Sort Line Ascending or Descending) depending on what you want to shuffle.
+* This will change the other but not the code
+
 #### Aside ---- Next.config.js by keerthika
 
 ```bash

@@ -151,6 +151,29 @@
   background-clip: content-box;
 }
 
+/**<!-- Styles by Prime -->*/
+
+/* Style scrollbar*/
+::-webkit-scrollbar {
+  width: 0.625rem;
+}
+
+/* Style scrollbar track */
+::-webkit-scrollbar-track {
+  background: #e0e0e0;
+}
+
+/* Style scrollbar handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Style scrollbar handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/**<!-- End of Styles by Prime -->*/
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
