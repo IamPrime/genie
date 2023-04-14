@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Link from "next/link";
 import DropDown from "./DropDown";
 import Notification from "./Notification";
@@ -8,16 +8,26 @@ import { FaBell } from "react-icons/fa";
 
 function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
+  const timeoutRef = useRef(null);
   const [showNotification, setShowNotification] = useState(false);
 
-  const toggleDropdown = () => {
-    setShowDropdown(!showDropdown);
+  const DropdownOnMouseEnter = () => {
+    setShowDropdown(true);
+    clearTimeout(timeoutRef.current);
     setShowNotification(false);
   };
+
+  const DropdownOnMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setShowDropdown(false);
+    }, 200);
+  };
+
   const toggleNotification = () => {
     setShowNotification(!showNotification);
     setShowDropdown(false);
   };
+
   const [user, loading] = useAuthState(auth);
 
   return (
@@ -120,7 +130,8 @@ function Navbar() {
                       )}
                     </button>
                     <button
-                      onClick={toggleDropdown}
+                      onMouseEnter={DropdownOnMouseEnter}
+                      onMouseLeave={DropdownOnMouseLeave}
                       className="text-black hover:text-pink-700 block rounded-md px-3 py-2 text-base font-medium"
                     >
                       {!user && (
@@ -205,7 +216,8 @@ function Navbar() {
                 )}
               </button>
               <button
-                onClick={toggleDropdown}
+                onMouseEnter={DropdownOnMouseEnter}
+                onMouseLeave={DropdownOnMouseLeave}
                 className="text-black hover:text-pink-700 block rounded-md px-3 py-2 text-base font-medium"
               >
                 {!user && (
