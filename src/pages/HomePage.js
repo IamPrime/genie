@@ -19,7 +19,7 @@ export default function HomePage() {
     }
     return (
         <>
-            <div className="bg-white container my-20 px-0 mx-0">
+            <div className="bg-white w-full my-20 px-0 mx-0">
                 {/* Section: Design Block */}
                 <section className="mb-32 text-black">
                     <div className="flex flex-wrap items-center">
@@ -87,9 +87,9 @@ export default function HomePage() {
                                 />
                                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
                                     <p className="text-yellow-600 text-2xl font-bold">
-                                        Join at <br/> Genie.com <br/>#MyApp
+                                        Join at <br /> Genie.com <br />#MyApp
                                     </p>
-                                    <Image src="/images/qrcode.jpg" alt="QR code" width={150} height={150}/>
+                                    <Image src="/images/qrcode.jpg" alt="QR code" width={150} height={150} />
                                 </div>
                             </div>
                         </div>

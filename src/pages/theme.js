@@ -19,7 +19,7 @@ export const tokens = (mode) => ({
             100: "#d0d1d5",
             200: "#a1a4ab",
             300: "#727681",
-            400: "#434957",
+            400: "#1f2a40",
             500: "#141b2d",
             600: "#101624",
             700: "#0c101b",
@@ -184,11 +184,24 @@ export const themeSettings = (mode) => {
     }
 }
 
-/** Context for toggling background */
-export const contextBackground = createContext({
-    toggleBackground: () => {}
-})
+/** Context for toggling color
+ * This context allows us to provide the function that changes theme of our page
+ */
+export const ColorModeContext = createContext({
+    toggleColorMode: () => {}
+});
 
 export const useMode = () => {
     const [mode, setMode] = useState("dark");
+
+    const colorMode = useMemo(
+        () => ({
+            toggleColorMode: () => setMode((prev) => (prev === "light" ? "dark" : "light")),
+        }),
+        [setMode]
+    )
+
+    const theme = useMemo(() => createTheme(themeSettings(mode)), [mode])
+
+    return [theme, colorMode];
 }

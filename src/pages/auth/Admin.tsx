@@ -43,7 +43,6 @@ export default function Admin() {
             if (auth.currentUser) {
                 await updateProfile(auth.currentUser, { photoURL: photoUrl });
             }
-
             router.push('/admin/Dashboard');
         } catch (error) {
             console.log(error);
