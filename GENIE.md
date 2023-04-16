@@ -100,21 +100,14 @@ Remove the alert after user has opened the message(s)
 
 Only those with the token will be able to see the admin login page
 
-## NOTE - MUI Highlights
-
-* The `<Box>` component of mui is similar to div with the difference that you can put css properties directly into the box.
-
 ### TODO - Fix the style in login page
 
 Use the tailwindcss bg-color tag and not the inline style tag
 
-### REVIEW - theme.js
+### NOTE - Hydration Error is caused by authentication state
 
-* Write the hex code of any color and use ctrl+k ctrl+g from Tailwind Shades extension to generate shades of it
-
-* Use ctrl+p, then type `>`.
-* After that, find (Sort Line Ascending or Descending) depending on what you want to shuffle.
-* This will change the other but not the code
+* Fix the authentication state for all the pages,
+* Make sure that authState is properly used where needed.
 
 #### Aside ---- Next.config.js by keerthika
 

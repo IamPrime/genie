@@ -5,7 +5,6 @@ import Notification from "./Notification";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../utils/firebase";
 import { FaBell } from "react-icons/fa";
-import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 
 function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
