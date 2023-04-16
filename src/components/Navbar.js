@@ -5,6 +5,7 @@ import Notification from "./Notification";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../utils/firebase";
 import { FaBell } from "react-icons/fa";
+import { MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 
 function Navbar() {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -33,9 +34,9 @@ function Navbar() {
   return (
     <>
       <nav className="fixed top-0 left-0 z-20 h-16 w-full bg-white">
-        <div className="mx-50 my-2 px-2 sm:px-6 lg:px-8">
+        <div className="my-2 px-2 sm:px-6 lg:px-8 bg-white">
           <div className="relative flex items-center justify-between">
-            <div className="absolute inset-y-0 left-0 items-center hidden">
+            <div className="absolute inset-y-2 left-14 items-center hidden">
               {/** Mobile menu button*/}
               <button
                 type="button"
@@ -76,6 +77,7 @@ function Navbar() {
                 </svg>
               </button>
             </div>
+            {/** Genie Logo */}
             <div className="flex flex-1 items-center justify-center sm:justify-start">
               <div className="flex flex-shrink-0 items-center">
                 <img
@@ -84,8 +86,8 @@ function Navbar() {
                   alt="Genie"
                 />
               </div>
-              <div className="hidden sm:ml-20 sm:block right-20 w-full">
-                <div className="flex items-center justify-between space-x-20 font-mono">
+              <div className="hidden sm:ml-20 sm:block w-full">
+                <div className="flex items-center justify-end space-x-20 font-mono">
                   {/** Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
                   <Link
                     href={"/"}
