@@ -1,12 +1,13 @@
 import React from "react";
 import Head from "next/head";
+import { auth } from "../../../../utils/firebase";
+import router, { useRouter } from "next/router";
 import { FcPrevious, FcNext, FcAlarmClock } from "react-icons/fc";
 import { GiCancel, GiLifeInTheBalance, GiCardRandom } from "react-icons/gi";
 import questions from "@/assets/questions/questions.json";
 import isEmpty from "@/utils/is-empty";
 import { alertService } from "@/utils";
 import { Alert } from "@/components";
-
 
 interface State {
     questions: any[];
@@ -27,6 +28,7 @@ interface State {
     prevRandNumbers: any[];
     nextBtnDisabled: boolean;
     prevBtnDisabled: boolean;
+    user: any;
 }
 
 class Play extends React.Component<{}, State> {
@@ -50,9 +52,21 @@ class Play extends React.Component<{}, State> {
         nextBtnDisabled: false,
         prevBtnDisabled: true,
         randomNumber: null,
+        user: null
     };
 
     componentDidMount() {
+        // Check if user is authenticated
+        // Check if user is authenticated
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                this.setState({ user });
+            } else {
+                // Redirect to login page
+                router.push('/auth/Login');
+            }
+        });
+
         const { questions } = this.state;
         this.displayQuestions(questions);
         this.startTimer();
@@ -334,7 +348,7 @@ class Play extends React.Component<{}, State> {
     handleQuizEnd = () => {
         alert("You have reached the last question");
 
-        const { score, numOfQuestions, numOfAnsweredQuestions, correctAnswers, wrongAnswers, tossUp, hints} = this.state;
+        const { score, numOfQuestions, numOfAnsweredQuestions, correctAnswers, wrongAnswers, tossUp, hints } = this.state;
 
         const playerStats = {
             score,
@@ -343,7 +357,7 @@ class Play extends React.Component<{}, State> {
             numOfAnsweredQuestions: correctAnswers + wrongAnswers,
             correctAnswers,
             wrongAnswers,
-            usedTossUp: 2 -tossUp,
+            usedTossUp: 2 - tossUp,
             usedHints: 5 - hints,
         };
 
@@ -364,8 +378,15 @@ class Play extends React.Component<{}, State> {
             numOfQuestions,
             hints,
             tossUp,
-            time
+            time,
+            user
         } = this.state;
+
+        if (!user) {
+            return <div className="text-purple-700 font-bold flex items-center justify-center">
+                L.O.A.D.I.N.G.....
+            </div>
+        }
 
         return (
             <>

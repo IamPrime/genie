@@ -10,10 +10,11 @@ import {
 import { auth } from '../../../utils/firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { useEffect } from 'react';
 
 export default function Login() {
-    const [user, loading] = useAuthState(auth);
+    const [user] = useAuthState(auth);
     const router = useRouter();
 
     // Google SignIn
@@ -51,7 +52,7 @@ export default function Login() {
 
     // Redirect to dashboard page if the user is already logged in
     useEffect(() => {
-        user ? router.push('/private/Dashboard') : console.log('Login');
+        user ? router.push('/private/Dashboard') : router.push('/auth/Login');
     }, [user]);
 
     return (
@@ -70,7 +71,7 @@ export default function Login() {
                     <div className="md:w-8/12 lg:ml-6 lg:w-5/12">
                         <form>
                             {/* Social login buttons */}
-                            <a
+                            <Link
                                 onClick={handleGoogleLogin}
                                 href="#!"
                                 role="button"
@@ -79,7 +80,7 @@ export default function Login() {
                                 data-te-ripple-init
                                 data-te-ripple-color="light"
                             >
-                                <div  className="flex items-center">
+                                <div className="flex items-center">
                                     <div>
                                         <FcGoogle className="text-2xl" />
                                     </div>
@@ -87,8 +88,8 @@ export default function Login() {
                                         Continue with Google
                                     </div>
                                 </div>
-                            </a>
-                            <a
+                            </Link>
+                            <Link
                                 onClick={handleFacebookLogin}
                                 className="mb-3 flex justify-center rounded bg-primary px-7 pb-2.5 pt-3 text-center text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
                                 style={{ backgroundColor: "#3b5998" }}
@@ -106,8 +107,8 @@ export default function Login() {
                                         Continue with Facebook
                                     </div>
                                 </div>
-                            </a>
-                            <a
+                            </Link>
+                            <Link
                                 className="mb-3 flex justify-center rounded bg-info px-7 pb-2.5 pt-3 text-center text-sm font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#54b4d3] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)]"
                                 style={{ backgroundColor: "#55acee" }}
                                 href="#!"
@@ -123,7 +124,7 @@ export default function Login() {
                                         Continue with Email
                                     </div>
                                 </div>
-                            </a>
+                            </Link>
                         </form>
                     </div>
                 </div>
