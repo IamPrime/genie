@@ -12,9 +12,10 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Admin() {
-    const [user, loading] = useAuthState(auth);
+    const [user] = useAuthState(auth);
     const router = useRouter();
 
     // Google SignIn

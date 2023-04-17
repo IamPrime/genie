@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { auth } from "../../../utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useRouter } from "next/router";
@@ -10,6 +9,7 @@ export default function Dashboard() {
 
     if (loading) return <h1>A.D.M.I.N.I.S.T.R.A.T.O.R......</h1>;
     if (!user) route.push("/");
+    
     if (user) {
         return (
             <div className="flex items-center justify-center bg-purple-400 text-amber-500">

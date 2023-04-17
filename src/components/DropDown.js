@@ -2,19 +2,20 @@ import { auth } from "../../utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { FaSpinner } from "react-icons/fa";
 
 function DropDown() {
     const route = useRouter();
-    const [user, loading] = useAuthState(auth);
+    const [user] = useAuthState(auth);
+
     if (route.isFallback) {
         return (
-          <div className="flex justify-center items-center h-screen">
-            <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-purple-500"></div>
-          </div>
+            <div className="flex justify-center items-center h-screen">
+                <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-purple-500"></div>
+            </div>
         );
-      }
-    if (!user) route.push("/");
+    }
+    if (!user) route.push("/auth/Login");
+
     if (user) {
         return (
             <div className="bg-white rounded-b-lg shadow-lg w-48 divide-y divide-gray-100 cursor-auto">
@@ -30,6 +31,9 @@ function DropDown() {
                     </li>
                     <li>
                         <Link href={"/Categories"} className="block px-4 py-2 text-gray-800 hover:bg-gray-100">Categories</Link>
+                    </li>
+                    <li>
+                        <Link href={{ pathname: '/private/chat/[id]', query: { id: 'id' } }}>Discussions</Link>
                     </li>
                 </ul>
                 <div>
