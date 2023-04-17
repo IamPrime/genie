@@ -5,11 +5,17 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useRouter } from "next/router";
 
 export default function HowTo() {
-  const route = useRouter();
-  const [user] = useAuthState(auth);
 
+  const route = useRouter();
+  const [user, loading] = useAuthState(auth);
+
+  if (loading) return (
+    <div className="text-purple-700 font-bold flex items-center justify-center">
+      L.O.A.D.I.N.G.....
+    </div>
+  )
   if (!user) route.push("/auth/Login");
-  
+
   if (user) {
     return (
       <>
