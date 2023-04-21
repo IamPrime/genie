@@ -5,7 +5,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useRouter } from "next/router";
 
 export default function HowTo() {
-
   const route = useRouter();
   const [user, loading] = useAuthState(auth);
 
@@ -22,7 +21,7 @@ export default function HowTo() {
         <Head>
           <title>Genie | Quiz Instructions</title>
         </Head>
-        <section className="bg-gradient-to-r from-pink-500 to-blue-500 leading-relaxed p-10 text-amber-300 rounded-tl-3xl rounded-br-3xl mx-40 my-10">
+        <section className="bg-gradient-to-r from-pink-500 to-purple-500 leading-relaxed p-10 text-amber-300 rounded-tl-3xl rounded-br-3xl mx-40 my-10">
           <div className="grid justify-center items-center ">
             <article className="prose md:prose-lg lg:prose-xl dark:prose-invert">
               <h1>How to play with the Genie</h1>
@@ -38,8 +37,8 @@ export default function HowTo() {
                     questions for each quiz type.
                   </li>
                   <li>
-                    <strong>Answer Options: &nbsp;</strong>Every question contains
-                    4 options.
+                    <strong>Answer Options: &nbsp;</strong>Every question
+                    contains 4 options.
                     {/** We can add a screenshot here */}
                   </li>
                   <li>
@@ -74,10 +73,20 @@ export default function HowTo() {
           </div>
           <div className="flex justify-between items-center">
             <span>
-              <Link className="text-white font-bold" href={"/private/Dashboard"}>Take me back</Link>
+              <Link
+                className="text-white font-bold"
+                href={"/private/Dashboard"}
+              >
+                Take me back
+              </Link>
             </span>
             <span>
-              <Link className="text-white font-bold" href={"/private/quiz/Play"}>Continue</Link>
+              <Link
+                className="text-white font-bold"
+                href={"/private/quiz/Play"}
+              >
+                Continue
+              </Link>
             </span>
           </div>
         </section>

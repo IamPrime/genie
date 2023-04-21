@@ -6,7 +6,7 @@ export default function Layout({ children }) {
         <div>
             <Navbar />
             <main className="mt-32 mb-32">{children}</main>
-            <Footer />
+            <Footer/>
         </div>
     );
 }
