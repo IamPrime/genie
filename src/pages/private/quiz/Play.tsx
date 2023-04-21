@@ -1,5 +1,7 @@
 import React from "react";
 import Head from "next/head";
+import { auth } from "../../../../utils/firebase";
+import router, { useRouter } from "next/router";
 import { FcPrevious, FcNext, FcAlarmClock } from "react-icons/fc";
 import { GiCancel, GiLifeInTheBalance, GiCardRandom } from "react-icons/gi";
 import questions from "@/assets/questions/questions.json";
@@ -7,57 +9,68 @@ import isEmpty from "@/utils/is-empty";
 import { alertService } from "@/utils";
 import { Alert } from "@/components";
 
-
 interface State {
-  questions: any[];
-  currentQuestion: any;
-  nextQuestion: any;
-  prevQuestion: any;
-  answer: any;
-  numOfQuestions: number;
-  numOfAnsweredQuestions: number;
-  currentQuestionIdx: number;
-  score: number;
-  correctAnswers: number;
-  wrongAnswers: number;
-  hints: number;
-  tossUp: number;
-  usedTossUp: boolean;
-  time: any;
-  prevRandNumbers: any[];
-  nextBtnDisabled: boolean;
-  prevBtnDisabled: boolean;
+questions: any[];
+    currentQuestion: any;
+    nextQuestion: any;
+    prevQuestion: any;
+    answer: any;
+    numOfQuestions: number;
+    numOfAnsweredQuestions: number;
+    currentQuestionIdx: number;
+    score: number;
+    correctAnswers: number;
+    wrongAnswers: number;
+    hints: number;
+    tossUp: number;
+    usedTossUp: boolean;
+    time: any;
+    prevRandNumbers: any[];
+    nextBtnDisabled: boolean;
+    prevBtnDisabled: boolean;
+    user: any;
 }
 
 class Play extends React.Component<{}, State> {
-  state = {
-    questions,
-    currentQuestion: {},
-    nextQuestion: {},
-    prevQuestion: {},
-    answer: "",
-    numOfQuestions: 0,
-    numOfAnsweredQuestions: 0,
-    currentQuestionIdx: 0,
-    score: 0,
-    correctAnswers: 0,
-    wrongAnswers: 0,
-    hints: 5,
-    tossUp: 2,
-    usedTossUp: false,
-    time: {},
-    prevRandNumbers: [],
-    nextBtnDisabled: false,
-    prevBtnDisabled: true,
-    randomNumber: null,
-  };
+    state = {
+        questions,
+        currentQuestion: {},
+        nextQuestion: {},
+        prevQuestion: {},
+        answer: '',
+        numOfQuestions: 0,
+        numOfAnsweredQuestions: 0,
+        currentQuestionIdx: 0,
+        score: 0,
+        correctAnswers: 0,
+        wrongAnswers: 0,
+        hints: 5,
+        tossUp: 2,
+        usedTossUp: false,
+        time: {},
+        prevRandNumbers: [],
+        nextBtnDisabled: false,
+        prevBtnDisabled: true,
+        randomNumber: null,
+        user: null
+    };
 
-  
-  componentDidMount() {
-    const { questions } = this.state;
-    this.displayQuestions(questions);
-    this.startTimer();
-  }
+    componentDidMount() {
+        // Check if user is authenticated
+        // Check if user is authenticated
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                this.setState({ user });
+            } else {
+                // Redirect to login page
+                router.push('/auth/Login');
+            }
+        });
+
+        const { questions } = this.state;
+        this.displayQuestions(questions);
+        this.startTimer();
+	}
 
   displayQuestions = (
     questions = this.state.questions,
@@ -340,7 +353,7 @@ class Play extends React.Component<{}, State> {
       });
     }
 
-    // Disable Next Button
+// Disable Next Button
     if (
       this.state.nextQuestion === undefined ||
       this.state.currentQuestionIdx + 1 === this.state.numOfQuestions
@@ -354,50 +367,49 @@ class Play extends React.Component<{}, State> {
       });
     }
   };
+    handleQuizEnd = () => {
+        alert("You have reached the last question");
 
-  handleQuizEnd = () => {
-    alert("You have reached the last question");
+        const { score, numOfQuestions, numOfAnsweredQuestions, correctAnswers, wrongAnswers, tossUp, hints } = this.state;
 
-    const {
-      score,
-      numOfQuestions,
-      numOfAnsweredQuestions,
-      correctAnswers,
-      wrongAnswers,
-      tossUp,
-      hints,
-    } = this.state;
+        const playerStats = {
+            score,
+            numOfQuestions,
+            //numOfAnsweredQuestions,
+            numOfAnsweredQuestions: correctAnswers + wrongAnswers,
+            correctAnswers,
+            wrongAnswers,
+            usedTossUp: 2 - tossUp,
+            usedHints: 5 - hints,
+        };
 
-    const playerStats = {
-      score,
-      numOfQuestions,
-      //numOfAnsweredQuestions,
-      numOfAnsweredQuestions: correctAnswers + wrongAnswers,
-      correctAnswers,
-      wrongAnswers,
-      usedTossUp: 2 - tossUp,
-      usedHints: 5 - hints,
-    };
-
-    sessionStorage.setItem("playerStats", JSON.stringify(playerStats));
+        sessionStorage.setItem("playerStats", JSON.stringify(playerStats));
 
     const dashboardUrl = "/private/Dashboard";
     const redirectToDashboard = () => {
       window.location.href = dashboardUrl;
     };
 
+
     setTimeout(redirectToDashboard, 1000);
   };
 
-  render() {
-    const {
-      currentQuestion,
-      currentQuestionIdx,
-      numOfQuestions,
-      hints,
-      tossUp,
-      time,
-    } = this.state;
+   render() {
+        const {
+            currentQuestion,
+            currentQuestionIdx,
+            numOfQuestions,
+            hints,
+            tossUp,
+            time,
+            user
+        } = this.state;
+
+        if (!user) {
+            return <div className="text-purple-700 font-bold flex items-center justify-center">
+                L.O.A.D.I.N.G.....
+            </div>
+        }
 
     return (
       <>
