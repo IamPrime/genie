@@ -44,7 +44,7 @@ export default function Admin() {
             if (auth.currentUser) {
                 await updateProfile(auth.currentUser, { photoURL: photoUrl });
             }
-            router.push('/admin/Dashboard');
+            router.push('/Admin');
         } catch (error) {
             console.log(error);
         }
@@ -52,7 +52,7 @@ export default function Admin() {
 
     // Redirect to dashboard page if the user is already logged in
     useEffect(() => {
-        user ? router.push('/admin/Dashboard') : console.log('Admin');
+        user ? router.push('/Admin') : console.log('Admin');
     }, [user]);
 
     return (
