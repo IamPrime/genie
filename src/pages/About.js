@@ -1,118 +1,171 @@
-import { GoMarkGithub } from 'react-icons/go';
-import Image from 'next/image';
+import { Canvas, useFrame, useLoader } from "@react-three/fiber";
+import { useRef, useState, useEffect } from "react";
+import { OrbitControls } from "@react-three/drei";
 
+import tanuja from "../../public/images/bgcode.jpg";
+import reshma from "../../public/images/engineering.png";
+import keerthika from "../../public/images/HPImage.png";
+import primus from "../../public/images/logo.png";
 
-export default function About() {
-    return (
-        <section className="grid items-center gap-10 mt-10">
-            <div className="flex justify-center space-x-10">
-                <div
-                    className="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700 border-2 border-amber-300">
-                    <a href="#!">
-                        <Image
-                            className="rounded-t-lg"
-                            src="/images/technology.png"
-                            alt="" width={150} height={150} />
-                    </a>
-                    <div className="p-6">
-                        <h5
-                            className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                            I_am_Prime Kabuo
-                        </h5>
-                        <p className="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut, illum!
-                        </p>
-                        <button
-                            type="button"
-                            className="inline-flex items-center gap-2 rounded bg-blue-600 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
-                            data-te-ripple-init
-                            data-te-ripple-color="light">
-                            Github
-                            <GoMarkGithub />
-                        </button>
-                    </div>
-                </div>
-                <div
-                    className="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700 border-2 border-amber-300">
-                    <a href="#!">
-                        <Image
-                            className="rounded-t-lg"
-                            src="/images/technology.png"
-                            alt="" width={150} height={150} />
-                    </a>
-                    <div className="p-6">
-                        <h5
-                            className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                            Keerthika Mulagani
-                        </h5>
-                        <p className="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est, dicta.
-                        </p>
-                        <button
-                            type="button"
-                            className="inline-flex items-center gap-2 rounded bg-blue-600 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
-                            data-te-ripple-init
-                            data-te-ripple-color="light">
-                            Github
-                            <GoMarkGithub />
-                        </button>
-                    </div>
-                </div>
-            </div>
-            <div className="flex justify-center space-x-10">
-                <div
-                    className="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700 border-2 border-amber-300">
-                    <a href="#!">
-                        <Image
-                            className="rounded-t-lg"
-                            src="/images/technology.png"
-                            alt="" width={150} height={150} />
-                    </a>
-                    <div className="p-6">
-                        <h5
-                            className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                            Tanuja Kolla
-                        </h5>
-                        <p className="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis, dolor!
-                        </p>
-                        <button
-                            type="button"
-                            className="inline-flex items-center gap-2 rounded bg-blue-600 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
-                            data-te-ripple-init
-                            data-te-ripple-color="light">
-                            Github
-                            <GoMarkGithub />
-                        </button>
-                    </div>
-                </div>
-                <div
-                    className="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700 border-2 border-amber-300">
-                    <a href="#!">
-                        <Image
-                            className="rounded-t-lg"
-                            src="/images/technology.png"
-                            alt="" width={150} height={150} />
-                    </a>
-                    <div className="p-6">
-                        <h5
-                            className="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
-                            Reshma Chowdary Kambhapati
-                        </h5>
-                        <p className="mb-4 text-base text-neutral-600 dark:text-neutral-200">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, possimus.
-                        </p>
-                        <button
-                            type="button"
-                            className="inline-flex items-center gap-2 rounded bg-blue-600 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
-                            data-te-ripple-init
-                            data-te-ripple-color="light">
-                            Github
-                            <GoMarkGithub />
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
+import * as THREE from "three";
+
+function Box({
+  onClick,
+  isCubeRotated,
+  setIsCubeRotated,
+  isClicked,
+  setIsClicked,
+  position,
+  image,
+}) {
+  const boxRef = useRef();
+
+  useFrame(() => {
+    if (boxRef.current && !isClicked) {
+      boxRef.current.rotation.x += 0.005;
+      boxRef.current.rotation.y += 0.01;
+    }
+    if (boxRef.current && isClicked) {
+      boxRef.current.rotation.x = 0;
+      boxRef.current.rotation.y = 0;
+      boxRef.current.rotation.z = 0;
+    }
+    if (boxRef.current && isCubeRotated) {
+      setIsClicked(true);
+      setIsCubeRotated(false);
+    }
+  });
+
+  const texture = useLoader(THREE.TextureLoader, image);
+
+  const handleClick = () => {
+    setIsClicked(true);
+    onClick();
+  };
+
+  return (
+    <mesh ref={boxRef} onClick={handleClick} position={position}>
+      <boxGeometry args={[1, 1, 1]} />
+
+      <meshBasicMaterial attach="material" map={texture} />
+    </mesh>
+  );
 }
+
+function About() {
+  const [isInfoVisible, setIsInfoVisible] = useState(false);
+  const [isCubeRotated, setIsCubeRotated] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
+  const [selectCubeInfo, setSelectedCubeInfo] = useState(false);
+
+  const handleClick = (info) => {
+    if (isInfoVisible) {
+      setIsCubeRotated(false);
+      setIsClicked(false);
+      setIsInfoVisible(false);
+    } else {
+      setIsCubeRotated(true);
+      setIsClicked(true);
+      setSelectedCubeInfo(info);
+      setIsInfoVisible(true);
+    }
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (event.target.tagName !== "CANVAS") {
+        setIsCubeRotated(false);
+        setIsClicked(false);
+        setIsInfoVisible(false);
+      }
+    };
+    window.addEventListener("click", handleClickOutside);
+    return () => window.removeEventListener("click", handleClickOutside);
+  }, []);
+
+  const cubeData = [
+    {
+      image: tanuja.src,
+      info: { name: "tanuja", age: "25", occupation: "Web Developer" },
+      position: [
+        Math.random() * 10 - 5,
+        Math.random() * 10 - 5,
+        Math.random() * 10 - 5,
+      ],
+    },
+    {
+      image: reshma.src,
+      info: { name: "reshma", age: "30", occupation: "Graphic Designer" },
+      position: [
+        Math.random() * 10 - 5,
+        Math.random() * 10 - 5,
+        Math.random() * 10 - 5,
+      ],
+    },
+
+    {
+      image: keerthika.src,
+      info: { name: "Keerthika", age: "30", occupation: "Graphic Designer" },
+      position: [
+        Math.random() * 10 - 5,
+        Math.random() * 10 - 5,
+        Math.random() * 10 - 5,
+      ],
+    },
+
+    {
+      image: primus.src,
+      info: { name: "Primus", age: "30", occupation: "Graphic Designer" },
+      position: [
+        Math.random() * 10 - 5,
+        Math.random() * 10 - 5,
+        Math.random() * 10 - 5,
+      ],
+    },
+  ];
+
+  const positions = [
+    [Math.random() * 10 - 5, Math.random() * 10 - 5, Math.random() * 10 - 5],
+    [Math.random() * 10 - 5, Math.random() * 10 - 5, Math.random() * 10 - 5],
+    [Math.random() * 10 - 5, Math.random() * 10 - 5, Math.random() * 10 - 5],
+    [Math.random() * 10 - 5, Math.random() * 10 - 5, Math.random() * 10 - 5],
+  ];
+
+  return (
+    <div className="flex justify-center items-center mt-0">
+      <div className="relative flex flex-row">
+        <Canvas style={{ width: "100vw", height: "100vh" }}>
+          <ambientLight intensity={0.5} />
+          <pointLight position={[10, 10, 10]} />
+          {cubeData.map((cube, i) => (
+            <Box
+              key={i}
+              onClick={() => handleClick(cube.info)}
+              isCubeRotated={isCubeRotated}
+              setIsCubeRotated={setIsCubeRotated}
+              isClicked={isClicked}
+              setIsClicked={setIsClicked}
+              position={cube.position}
+              image={cube.image}
+              info={cube.info}
+            />
+          ))}
+          <OrbitControls />
+        </Canvas>
+        {isInfoVisible && (
+          <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center bg-gray-900 bg-opacity-75 z-10">
+            <div className="bg-pink-900 text-white p-4 rounded-md">
+              <h2 className="text-2xl font-bold mb-4">
+                {selectCubeInfo.name}
+              </h2>
+              <p className="mb-2">Age: {selectCubeInfo.age}</p>
+              <p>Occupation: {selectCubeInfo.occupation}</p>
+            </div>
+          </div>  
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default About;
