@@ -13,8 +13,12 @@ export default function QuizzeD() {
     const [user, loading] = useAuthState(auth);
 
     if (loading) return (
-        <div className="text-purple-700 font-bold flex items-center justify-center">
-            L.O.A.D.I.N.G.....
+        <div className="flex justify-center items-center bg-gray-900 h-screen">
+            <div className="bg-white flex space-x-2 p-5 rounded-full justify-center items-center">
+                <div className="bg-blue-600 p-2 w-4 h-4 rounded-full"></div>
+                <div className="bg-green-600 p-2 w-4 h-4 rounded-full"></div>
+                <div className="bg-red-600 p-2 w-4 h-4 rounded-full"></div>
+            </div>
         </div>
     )
     if (!user) route.push("/auth/Login");
@@ -27,20 +31,22 @@ export default function QuizzeD() {
                 </Head>
                 <section className='grid justify-center items-center mt-36 bg-purple-200 rounded-lg py-10 border-2 border-amber-300'>
                     <div className='items-center'>
-                        <span>
+                        <span className='flex items-center justify-center'>
                             <GiNotebook className='w-28 md:w-32 lg:w-48 h-28 md:h-32 lg:h-48' />
                         </span>
                     </div>
-                    <h1 className='text-amber-800 text-center'>
-                        <strong>Genie </strong>
-                        | Fun Quizzes For Everyone
-                    </h1>
-                    <div className='ml-5 button w-32 rounded-full bg-green-600 text-center mt-3 text-amber-300'>
-                        <ul>
-                            <li>
-                                <Link href={'/private/quiz/HowTo'}>Play</Link>
-                            </li>
-                        </ul>
+                    <div>
+                        <h1 className='text-amber-800 text-center'>
+                            <strong>Genie </strong>
+                            | Fun Quizzes For Everyone
+                        </h1>
+                    </div>
+                    <div className='mt-7 flex items-center justify-center w-full'>
+                        <button className='bg-green-600 rounded-full px-7'>
+                            <Link href={'/private/quiz/HowTo'}>
+                                Play
+                            </Link>
+                        </button>
                     </div>
                 </section>
                 <QuizSummary />

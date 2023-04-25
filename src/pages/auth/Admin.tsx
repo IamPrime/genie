@@ -12,7 +12,6 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 
 export default function Admin() {
     const [user] = useAuthState(auth);
@@ -23,7 +22,7 @@ export default function Admin() {
         const provider = new GoogleAuthProvider();
         try {
             const result = await signInWithPopup(auth, provider);
-            router.push('/admin/Dashboard');
+            router.push('/private/Dashboard');
         } catch (error) {
             console.log(error);
         }
@@ -44,7 +43,7 @@ export default function Admin() {
             if (auth.currentUser) {
                 await updateProfile(auth.currentUser, { photoURL: photoUrl });
             }
-            router.push('/Admin');
+            router.push('/private/Dashboard');
         } catch (error) {
             console.log(error);
         }
@@ -52,7 +51,7 @@ export default function Admin() {
 
     // Redirect to dashboard page if the user is already logged in
     useEffect(() => {
-        user ? router.push('/Admin') : console.log('Admin');
+        user ? router.push('/private/Dashboard') : console.log('Admin');
     }, [user]);
 
     return (

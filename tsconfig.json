@@ -18,6 +18,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/Navbar.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/Navbar.js", "src/pages/private/quiz/Play.js", "src/utils/is-empty.js"],
   "exclude": ["node_modules"]
 }

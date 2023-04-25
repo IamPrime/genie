@@ -33,12 +33,12 @@ function Navbar() {
     setShowDropdown(false);
   };
 
-  const [user, loading] = useAuthState(auth);
+  const [user] = useAuthState(auth);
 
   return (
     <>
       <nav className="fixed top-0 left-0 z-20 h-16 w-full bg-white">
-        <div className="my-2 px-2 sm:px-6 lg:px-8 bg-white">
+        <div className="px-2 sm:px-6 lg:px-8 bg-white">
           <div className="relative flex items-center justify-between">
             <div className="absolute inset-y-2 left-14 items-center hidden">
               {/* Mobile menu button*/}
@@ -105,6 +105,12 @@ function Navbar() {
                     className="text-black hover:bg-pink-700 hover:text-white rounded-md px-3 py-2 text-m font-medium"
                   >
                     About
+                  </Link>
+                  <Link
+                    href={"/Advert"}
+                    className="text-black hover:bg-pink-700 hover:text-white rounded-md px-3 py-2 text-m font-medium"
+                  >
+                    Trial
                   </Link>
                   <Link
                     href={"/Contact"}
@@ -186,33 +192,39 @@ function Navbar() {
             </button>
             {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
             {showMenu && (
-            <div className="left-0 bg-white z-50">
-              <Link
-              href={"/"}
-              className="text-black hover:bg-pink-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
-              aria-current="page"
-            >
-              Home
-            </Link>
-            <Link
-              href={"/About"}
-              className="text-black hover:bg-pink-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
-            >
-              About
-            </Link>
-            <Link
-              href={"/Contact"}
-              className="text-black hover:bg-pink-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
-            >
-              Contact
-            </Link>
-            <Link
-              href={"/Categories"}
-              className="text-black hover:bg-pink-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
-            >
-              Categories
-            </Link>
-            </div>
+              <div className="left-0 bg-white z-50">
+                <Link
+                  href={"/"}
+                  className="text-black hover:bg-pink-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+                  aria-current="page"
+                >
+                  Home
+                </Link>
+                <Link
+                  href={"/About"}
+                  className="text-black hover:bg-pink-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+                >
+                  About
+                </Link>
+                <Link
+                  href={"/Avdert"}
+                  className="text-black hover:bg-pink-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+                >
+                  Trial
+                </Link>
+                <Link
+                  href={"/Contact"}
+                  className="text-black hover:bg-pink-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+                >
+                  Contact
+                </Link>
+                <Link
+                  href={"/Categories"}
+                  className="text-black hover:bg-pink-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+                >
+                  Categories
+                </Link>
+              </div>
             )}
             <div className="flex items-center justify-end space-x-5 inset-y-0 right-0 pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 font-mono">
               <button

@@ -113,11 +113,11 @@ function Alert({ id, fade }) {
     if (!alerts.length) return null;
 
     return (
-        <div className='flex items-center justify-center relative bottom-4 left-4 border-2 border-solid border-amber-300 w-44 h-20 rounded-lg'>
+        <div className='flex items-center justify-center relative bottom-4 left-4 border-2 border-solid border-amber-300 bg-white w-44 h-20 rounded-lg'>
             {alerts.map((alert, index) =>
                 <div key={index} className={cssClasses(alert)}>
                     <span className='text-sky-400' dangerouslySetInnerHTML={{ __html: alert.message }}></span>
-                    <a className="close text-red-500" onClick={() => removeAlert(alert)}>&times;</a>
+                    {/**<a className="close text-red-500" onClick={() => removeAlert(alert)}>&times;</a>*/}
                 </div>
             )}
         </div>

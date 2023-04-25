@@ -9,8 +9,12 @@ export default function HowTo() {
   const [user, loading] = useAuthState(auth);
 
   if (loading) return (
-    <div className="text-purple-700 font-bold flex items-center justify-center">
-      L.O.A.D.I.N.G.....
+    <div className="flex justify-center items-center bg-gray-900 h-screen">
+      <div className="bg-white flex space-x-2 p-5 rounded-full justify-center items-center">
+        <div className="bg-blue-600 p-2 w-4 h-4 rounded-full"></div>
+        <div className="bg-green-600 p-2 w-4 h-4 rounded-full"></div>
+        <div className="bg-red-600 p-2 w-4 h-4 rounded-full"></div>
+      </div>
     </div>
   )
   if (!user) route.push("/auth/Login");

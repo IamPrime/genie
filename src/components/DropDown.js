@@ -7,12 +7,18 @@ function DropDown() {
     const route = useRouter();
     const [user] = useAuthState(auth);
 
+    const { ADMIN_URI } = process.env
+
     if (route.isFallback) {
         return (
-            <div className="flex justify-center items-center h-screen">
-                <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-purple-500"></div>
+            <div className="flex justify-center items-center bg-gray-900 h-screen">
+                <div className="bg-white flex space-x-2 p-5 rounded-full justify-center items-center">
+                    <div className="bg-blue-600 p-2 w-4 h-4 rounded-full"></div>
+                    <div className="bg-green-600 p-2 w-4 h-4 rounded-full"></div>
+                    <div className="bg-red-600 p-2 w-4 h-4 rounded-full"></div>
+                </div>
             </div>
-        );
+        )
     }
     if (!user) route.push("/auth/Login");
 
@@ -33,7 +39,7 @@ function DropDown() {
                         <Link href={"/Categories"} className="block px-4 py-2 text-gray-800 hover:bg-gray-100">Categories</Link>
                     </li>
                     <li>
-                        <Link href={{ pathname: '/private/chat/[id]', query: { id: 'id' } }}>Discussions</Link>
+                        {/**<Link href={{ pathname: '/private/chat/[id]', query: { id: 'id' } }}>Discussions</Link>*/}
                     </li>
                 </ul>
                 <div>

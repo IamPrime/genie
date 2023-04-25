@@ -10,67 +10,67 @@ import { alertService } from "@/utils";
 import { Alert } from "@/components";
 
 interface State {
-questions: any[];
-    currentQuestion: any;
-    nextQuestion: any;
-    prevQuestion: any;
-    answer: any;
-    numOfQuestions: number;
-    numOfAnsweredQuestions: number;
-    currentQuestionIdx: number;
-    score: number;
-    correctAnswers: number;
-    wrongAnswers: number;
-    hints: number;
-    tossUp: number;
-    usedTossUp: boolean;
-    time: any;
-    prevRandNumbers: any[];
-    nextBtnDisabled: boolean;
-    prevBtnDisabled: boolean;
-    user: any;
+  questions: any[];
+  currentQuestion: any;
+  nextQuestion: any;
+  prevQuestion: any;
+  answer: any;
+  numOfQuestions: number;
+  numOfAnsweredQuestions: number;
+  currentQuestionIdx: number;
+  score: number;
+  correctAnswers: number;
+  wrongAnswers: number;
+  hints: number;
+  tossUp: number;
+  usedTossUp: boolean;
+  time: any;
+  prevRandNumbers: any[];
+  nextBtnDisabled: boolean;
+  prevBtnDisabled: boolean;
+  user: any;
 }
 
 class Play extends React.Component<{}, State> {
-    state = {
-        questions,
-        currentQuestion: {},
-        nextQuestion: {},
-        prevQuestion: {},
-        answer: '',
-        numOfQuestions: 0,
-        numOfAnsweredQuestions: 0,
-        currentQuestionIdx: 0,
-        score: 0,
-        correctAnswers: 0,
-        wrongAnswers: 0,
-        hints: 5,
-        tossUp: 2,
-        usedTossUp: false,
-        time: {},
-        prevRandNumbers: [],
-        nextBtnDisabled: false,
-        prevBtnDisabled: true,
-        randomNumber: null,
-        user: null
-    };
+  state = {
+    questions,
+    currentQuestion: {},
+    nextQuestion: {},
+    prevQuestion: {},
+    answer: '',
+    numOfQuestions: 0,
+    numOfAnsweredQuestions: 0,
+    currentQuestionIdx: 0,
+    score: 0,
+    correctAnswers: 0,
+    wrongAnswers: 0,
+    hints: 5,
+    tossUp: 2,
+    usedTossUp: false,
+    time: {},
+    prevRandNumbers: [],
+    nextBtnDisabled: false,
+    prevBtnDisabled: true,
+    randomNumber: null,
+    user: null
+  };
 
-    componentDidMount() {
-        // Check if user is authenticated
-        // Check if user is authenticated
-        auth.onAuthStateChanged(user => {
-            if (user) {
-                this.setState({ user });
-            } else {
-                // Redirect to login page
-                router.push('/auth/Login');
-            }
-        });
+  componentDidMount() {
+    // Check if user is authenticated
+    // Check if user is authenticated
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        this.setState({ user });
+      } else {
+        // Redirect to login page
+        router.push('/auth/Login');
+      }
+    });
 
-        const { questions } = this.state;
-        this.displayQuestions(questions);
-        this.startTimer();
-	}
+    const { questions } = this.state;
+    this.displayQuestions(questions);
+    this.startTimer();
+  }
 
   displayQuestions = (
     questions = this.state.questions,
@@ -353,7 +353,7 @@ class Play extends React.Component<{}, State> {
       });
     }
 
-// Disable Next Button
+    // Disable Next Button
     if (
       this.state.nextQuestion === undefined ||
       this.state.currentQuestionIdx + 1 === this.state.numOfQuestions
@@ -367,23 +367,23 @@ class Play extends React.Component<{}, State> {
       });
     }
   };
-    handleQuizEnd = () => {
-        alert("You have reached the last question");
+  handleQuizEnd = () => {
+    alert("You have reached the last question");
 
-        const { score, numOfQuestions, numOfAnsweredQuestions, correctAnswers, wrongAnswers, tossUp, hints } = this.state;
+    const { score, numOfQuestions, numOfAnsweredQuestions, correctAnswers, wrongAnswers, tossUp, hints } = this.state;
 
-        const playerStats = {
-            score,
-            numOfQuestions,
-            //numOfAnsweredQuestions,
-            numOfAnsweredQuestions: correctAnswers + wrongAnswers,
-            correctAnswers,
-            wrongAnswers,
-            usedTossUp: 2 - tossUp,
-            usedHints: 5 - hints,
-        };
+    const playerStats = {
+      score,
+      numOfQuestions,
+      //numOfAnsweredQuestions,
+      numOfAnsweredQuestions: correctAnswers + wrongAnswers,
+      correctAnswers,
+      wrongAnswers,
+      usedTossUp: 2 - tossUp,
+      usedHints: 5 - hints,
+    };
 
-        sessionStorage.setItem("playerStats", JSON.stringify(playerStats));
+    sessionStorage.setItem("playerStats", JSON.stringify(playerStats));
 
     const dashboardUrl = "/private/Dashboard";
     const redirectToDashboard = () => {
@@ -394,38 +394,44 @@ class Play extends React.Component<{}, State> {
     setTimeout(redirectToDashboard, 1000);
   };
 
-   render() {
-        const {
-            currentQuestion,
-            currentQuestionIdx,
-            numOfQuestions,
-            hints,
-            tossUp,
-            time,
-            user
-        } = this.state;
+  render() {
+    const {
+      currentQuestion,
+      currentQuestionIdx,
+      numOfQuestions,
+      hints,
+      tossUp,
+      time,
+      user
+    } = this.state;
 
-        if (!user) {
-            return <div className="text-purple-700 font-bold flex items-center justify-center">
-                L.O.A.D.I.N.G.....
-            </div>
-        }
+    if (!user) {
+      return (
+        <div className="flex justify-center items-center bg-gray-900 h-screen">
+          <div className="bg-white flex space-x-2 p-5 rounded-full justify-center items-center">
+            <div className="bg-blue-600 p-2 w-4 h-4 rounded-full"></div>
+            <div className="bg-green-600 p-2 w-4 h-4 rounded-full"></div>
+            <div className="bg-red-600 p-2 w-4 h-4 rounded-full"></div>
+          </div>
+        </div>
+      )
+    }
 
     return (
       <>
         <Head>
           <title>Genie | Quiz 1</title>
         </Head>
-        <section className="bg-gradient-to-r from-pink-700 to-purple-700 p-5 mt-10">
+        <section className="bg-gradient-to-r from-pink-300 to-purple-100 p-5 mt-10 text-amber-600">
           {/** Lifeline, Hints and Timer */}
           <div className="flex justify-between items-center pb-4">
-            <div className="inline-flex items-center cursor-grabbing hover:bg-pink-500 hover:rounded-lg">
+            <div className="inline-flex items-center cursor-grabbing hover:bg-pink-200 hover:rounded-lg">
               <span onClick={this.handleTossUpClick}>
                 <GiLifeInTheBalance className="text-pink-900 h-7 w-7" />
               </span>
               <div className="px-1">{tossUp}</div>
             </div>
-            <div className="inline-flex items-center cursor-grabbing hover:bg-purple-500 hover:rounded-lg">
+            <div className="inline-flex items-center cursor-grabbing hover:bg-purple-200 hover:rounded-lg">
               <span onClick={this.handleHintsClick}>
                 <GiCardRandom className="text-purple-900 h-7 w-7" />
               </span>
@@ -491,7 +497,7 @@ class Play extends React.Component<{}, State> {
               onClick={this.handlePrevButtonClick}
               type="button"
               disabled={this.state.prevBtnDisabled}
-              className="inline-flex items-center rounded bg-amber-700 px-6 pt-2.5 pb-2 text-xs disabled:opacity-30 font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#54b4d3] transition duration-150 ease-in-out hover:bg-info-600 hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)]"
+              className="inline-flex items-center rounded bg-blue-700 px-6 pt-2.5 pb-2 text-xs disabled:opacity-30 font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#54b4d3] transition duration-150 ease-in-out hover:bg-info-600 hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)]"
             >
               <FcPrevious />
               <span className="px-1">Previous</span>

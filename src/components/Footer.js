@@ -19,33 +19,27 @@ export default function Footer() {
                 </div>
                 <div className="sticky bottom-0">
                     <div className="flex justify-center space-x-4">
-                        <span>
-                            <Link href={"/auth/Admin"}>Admin</Link>
-                        </span>
-                        <span>
+                        <Link href="#!">
                             <FaTwitter className="w-6 h-6 text-blue-600 fill-current" />
-                        </span>
-                        <span>
+                        </Link>
+                        <Link href="#!">
                             <FaWhatsapp className="w-6 h-6 text-green-400 fill-current" />
-                        </span>
-                        <span>
-
+                        </Link>
+                        <Link href="#!">
                             <FaLinkedin className="w-6 h-6 text-blue-500 fill-current" />
-
-                        </span>
-                        <span>
+                        </Link>
+                        <Link href="#!">
                             <FaInstagram className="h-6 w-6 text-pink-700 fill-current" />
-                        </span>
-                        <span>
+                        </Link>
+                        <Link href="#!">
                             <FaSnapchat className="h-6 w-6 text-yellow-400 fill-current" />
-                        </span>
-                        <span>
+                        </Link>
+                        <Link href="https://github.com/Project-Blueblood">
                             <FaGithub className="h-6 w-6 text-gray-500 fill-current" />
-                        </span>
-                        <span>
-
+                        </Link>
+                        <Link href="#!">
                             <FaYoutube className="h-6 w-6 text-red-700 fill-current" />
-                        </span>
+                        </Link>
                     </div>
                 </div>
             </div>
@@ -56,12 +50,12 @@ export default function Footer() {
                         <div className="text-sm text-gray-500 font-semibold py-0">
                             Copyright © <span id="get-current-year">2023</span>
                             &nbsp; by &nbsp;
-                            <a
-                                href="https://www.creative-tim.com?ref=njs-profile"
-                                className="text-gray-500 hover:text-black"
+                            <Link
+                                href="https://github.com/Project-Blueblood"
+                                className="text-gray-500 hover:text-yellow-100"
                             >
                                 Team BlueBlood
-                            </a>
+                            </Link>
                             .
                         </div>
                     </div>
