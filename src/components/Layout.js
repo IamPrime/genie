@@ -1,5 +1,6 @@
 import Navbar from "./Navbar";
-import Footer from "./Footer"
+import Footer from "./Footer";
+import {useLocation} from "react-dom"
 
 export default function Layout({ children }) {
     return (

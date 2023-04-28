@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import { Canvas, useFrame, useLoader } from "@react-three/fiber";
 import { useRef, useState, useEffect } from "react";
 import { OrbitControls } from "@react-three/drei";
@@ -164,8 +165,21 @@ function About() {
           </div>  
         )}
       </div>
+=======
+import React from 'react'
+import About3 from '../components/About3'
+
+const About = () => {
+  return (
+    <div className='bg-black flex items-center justify-center h-screen py-24 min-w-fit'>
+      <About3 />
+>>>>>>> Stashed changes
     </div>
-  );
+  )
 }
 
+<<<<<<< Updated upstream
 export default About;
+=======
+export default About
+>>>>>>> Stashed changes

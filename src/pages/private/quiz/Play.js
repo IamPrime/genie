@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Head from "next/head";
+import { auth } from "../../../../utils/firebase";
+import router from "next/router";
 import { FcPrevious, FcNext, FcAlarmClock } from "react-icons/fc";
 import { GiCancel, GiLifeInTheBalance, GiCardRandom } from "react-icons/gi";
 import questions from "@/assets/questions/questions.json";
@@ -32,9 +34,19 @@ class Play extends Component {
     nextBtnDisabled: false,
     prevBtnDisabled: true,
     randomNumber: null,
+    user: null
   };
 
   componentDidMount() {
+    // Check if user is authenticated
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        this.setState({ user });
+      } else {
+        // Redirect to login page
+        router.push('/auth/Login');
+      }
+    });
     const { questions } = this.state;
     this.displayQuestions(questions);
     this.startTimer();
@@ -362,116 +374,118 @@ class Play extends Component {
   };
 
   render() {
-    const { currentQuestion, currentQuestionIdx, hints, tossUp, numOfQuestions, time } = this.state;
+    const { currentQuestion, currentQuestionIdx, hints, tossUp, numOfQuestions, time, user } = this.state;
 
-    return (
-      <>
-        <Head>
-          <title>Genie | Advert</title>
-        </Head>
-        <section className="bg-gradient-to-r from-pink-300 to-purple-100 p-5 mt-16 text-amber-600">
-          {/** Lifeline, Hints and Timer */}
-          <div className="flex justify-between items-center pb-2">
-            <div className="inline-flex items-center cursor-grabbing hover:bg-pink-200 hover:rounded-lg">
-              <span onClick={this.handleTossUpClick}>
-                <GiLifeInTheBalance className="text-pink-900 h-7 w-7" />
-              </span>
-              <div className="px-1">{tossUp}</div>
-            </div>
-            <div className="inline-flex items-center cursor-grabbing hover:bg-purple-200 hover:rounded-lg">
-              <span onClick={this.handleHintsClick}>
-                <GiCardRandom className="text-purple-900 h-7 w-7" />
-              </span>
-              <div className="px-1">{hints}</div>
-            </div>
-          </div>
-          <div className="flex justify-between items-center pb-2">
-            <div>
-              <span>
-                {currentQuestionIdx + 1} of {numOfQuestions}
-              </span>
-            </div>
-            <div className="inline-flex items-center">
-              <span>
-                <FcAlarmClock />
-              </span>
-              <div className="px-1">
-                {time.minutes} : {time.seconds}
+    if (user) {
+      return (
+        <>
+          <Head>
+            <title>Genie | Advert</title>
+          </Head>
+          <section className="bg-gradient-to-r from-pink-300 to-purple-100 p-5 mt-16 text-amber-600">
+            {/** Lifeline, Hints and Timer */}
+            <div className="flex justify-between items-center pb-2">
+              <div className="inline-flex items-center cursor-grabbing hover:bg-pink-200 hover:rounded-lg">
+                <span onClick={this.handleTossUpClick}>
+                  <GiLifeInTheBalance className="text-pink-900 h-7 w-7" />
+                </span>
+                <div className="px-1">{tossUp}</div>
+              </div>
+              <div className="inline-flex items-center cursor-grabbing hover:bg-purple-200 hover:rounded-lg">
+                <span onClick={this.handleHintsClick}>
+                  <GiCardRandom className="text-purple-900 h-7 w-7" />
+                </span>
+                <div className="px-1">{hints}</div>
               </div>
             </div>
-          </div>
-          {/** Quiz Question and Answer Options */}
-          <div className="grid justify-center items-center p-7 mb-5">
-            <div className="question container">
-              <h1 className="flex justify-center items-center cursor-grab mb-5 font-bold text-lg hover:text-xl sm:text-base">
-                {currentQuestion.question}
-              </h1>
-            </div>
-            <div className="answers container grid items-center">
-              <div className="options flex justify-between items-center gap-20 m-3">
-                <button
-                  onClick={this.handleOptionClick}
-                  className="option md:w-60 flex items-center justify-center cursor-pointer bg-pink-300 rounded-full min-w-40 h-7 px-3 py-5 hover:bg-pink-500 text-pink-900"
-                >
-                  {currentQuestion.optionA}
-                </button>
-                <button
-                  onClick={this.handleOptionClick}
-                  className="option md:w-60 flex items-center justify-center cursor-pointer bg-purple-300 rounded-full min-w-40 h-7 px-3 py-5 hover:bg-purple-500 text-purple-900"
-                >
-                  {currentQuestion.optionB}
-                </button>
+            <div className="flex justify-between items-center pb-2">
+              <div>
+                <span>
+                  {currentQuestionIdx + 1} of {numOfQuestions}
+                </span>
               </div>
-              <div className="options flex justify-between items-center gap-20 m-3">
-                <button
-                  onClick={this.handleOptionClick}
-                  className="option md:w-60 flex items-center justify-center cursor-pointer bg-pink-300 rounded-full min-w-40 h-7 px-3 py-5 hover:bg-pink-500 text-pink-900"
-                >
-                  {currentQuestion.optionC}
-                </button>
-                <button
-                  onClick={this.handleOptionClick}
-                  className="option md:w-60 flex items-center justify-center cursor-pointer bg-purple-300 rounded-full min-w-40 h-7 px-3 py-5 hover:bg-purple-500 text-purple-900"
-                >
-                  {currentQuestion.optionD}
-                </button>
+              <div className="inline-flex items-center">
+                <span>
+                  <FcAlarmClock />
+                </span>
+                <div className="px-1">
+                  {time.minutes} : {time.seconds}
+                </div>
               </div>
             </div>
-          </div>
-          {/** Popup Alert */}
-          <Alert />
-          {/** Buttons | Previous, Next and Quit */}
-          <div className="flex justify-center space-x-2 mb-7">
-            <button
-              onClick={this.handlePrevButtonClick}
-              type="button"
-              disabled={this.state.prevBtnDisabled}
-              className="inline-flex items-center rounded bg-blue-700 px-6 pt-2.5 pb-2 text-xs disabled:opacity-30 font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#54b4d3] transition duration-150 ease-in-out hover:bg-info-600 hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)]"
-            >
-              <FcPrevious />
-              <span className="px-1">Previous</span>
-            </button>
-            <button
-              onClick={this.handleQuitButtonClick}
-              type="button"
-              className="inline-flex items-center rounded cursor-help bg-red-700 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-600 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)]"
-            >
-              <GiCancel />
-              <span className="px-1">Quit</span>
-            </button>
-            <button
-              onClick={this.handleNextButtonClick}
-              type="button"
-              disabled={this.state.nextBtnDisabled}
-              className="inline-flex items-center rounded bg-green-700 px-6 pt-2.5 pb-2 text-xs disabled:opacity-60 font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)]"
-            >
-              <span className="px-1">Next</span>
-              <FcNext />
-            </button>
-          </div>
-        </section>
-      </>
-    );
+            {/** Quiz Question and Answer Options */}
+            <div className="grid justify-center items-center p-7 mb-5">
+              <div className="question container">
+                <h1 className="flex justify-center items-center cursor-grab mb-5 font-bold text-lg hover:text-xl sm:text-base">
+                  {currentQuestion.question}
+                </h1>
+              </div>
+              <div className="answers container grid items-center">
+                <div className="options flex justify-between items-center gap-20 m-3">
+                  <button
+                    onClick={this.handleOptionClick}
+                    className="option md:w-60 flex items-center justify-center cursor-pointer bg-pink-300 rounded-full min-w-40 h-7 px-3 py-5 hover:bg-pink-500 text-pink-900"
+                  >
+                    {currentQuestion.optionA}
+                  </button>
+                  <button
+                    onClick={this.handleOptionClick}
+                    className="option md:w-60 flex items-center justify-center cursor-pointer bg-purple-300 rounded-full min-w-40 h-7 px-3 py-5 hover:bg-purple-500 text-purple-900"
+                  >
+                    {currentQuestion.optionB}
+                  </button>
+                </div>
+                <div className="options flex justify-between items-center gap-20 m-3">
+                  <button
+                    onClick={this.handleOptionClick}
+                    className="option md:w-60 flex items-center justify-center cursor-pointer bg-pink-300 rounded-full min-w-40 h-7 px-3 py-5 hover:bg-pink-500 text-pink-900"
+                  >
+                    {currentQuestion.optionC}
+                  </button>
+                  <button
+                    onClick={this.handleOptionClick}
+                    className="option md:w-60 flex items-center justify-center cursor-pointer bg-purple-300 rounded-full min-w-40 h-7 px-3 py-5 hover:bg-purple-500 text-purple-900"
+                  >
+                    {currentQuestion.optionD}
+                  </button>
+                </div>
+              </div>
+            </div>
+            {/** Popup Alert */}
+            <Alert />
+            {/** Buttons | Previous, Next and Quit */}
+            <div className="flex justify-center space-x-2 mb-7">
+              <button
+                onClick={this.handlePrevButtonClick}
+                type="button"
+                disabled={this.state.prevBtnDisabled}
+                className="inline-flex items-center rounded bg-blue-700 px-6 pt-2.5 pb-2 text-xs disabled:opacity-30 font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#54b4d3] transition duration-150 ease-in-out hover:bg-info-600 hover:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:bg-info-600 focus:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)] focus:outline-none focus:ring-0 active:bg-info-700 active:shadow-[0_8px_9px_-4px_rgba(84,180,211,0.3),0_4px_18px_0_rgba(84,180,211,0.2)]"
+              >
+                <FcPrevious />
+                <span className="px-1">Previous</span>
+              </button>
+              <button
+                onClick={this.handleQuitButtonClick}
+                type="button"
+                className="inline-flex items-center rounded cursor-help bg-red-700 px-6 pt-2.5 pb-2 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-600 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)]"
+              >
+                <GiCancel />
+                <span className="px-1">Quit</span>
+              </button>
+              <button
+                onClick={this.handleNextButtonClick}
+                type="button"
+                disabled={this.state.nextBtnDisabled}
+                className="inline-flex items-center rounded bg-green-700 px-6 pt-2.5 pb-2 text-xs disabled:opacity-60 font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)]"
+              >
+                <span className="px-1">Next</span>
+                <FcNext />
+              </button>
+            </div>
+          </section>
+        </>
+      );
+    }
   }
 }
 
