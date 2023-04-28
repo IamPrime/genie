@@ -40,7 +40,7 @@ export default function About3() {
             <hemisphereLight groundColor="red" />
             <Float floatIntensity={10} rotationIntensity={4}>
                 <Html castShadow receiveShadow occlude="blending" transform>
-                    <iframe title="embed" width={700} height={500} src="https://teamblueblood.netlify.app/" frameBorder={0} />
+                    <iframe title="embed" width={1200} height={700} src="https://teamblueblood.netlify.app/" frameBorder={0} />
                 </Html>
             </Float>
             <Geometries />
