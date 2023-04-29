@@ -4,7 +4,8 @@ import { auth } from "../../../../utils/firebase";
 import router from "next/router";
 import { FcPrevious, FcNext, FcAlarmClock } from "react-icons/fc";
 import { GiCancel, GiLifeInTheBalance, GiCardRandom } from "react-icons/gi";
-import questions from "@/assets/questions/questions.json";
+//import questions from "@/assets/questions/questions.json";
+import questions from "../../../../public/data/questions.json"
 import isEmpty from "@/utils/is-empty";
 import { alertService } from "@/utils";
 import { Alert } from "@/components";
