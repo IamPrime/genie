@@ -76,40 +76,44 @@ npm i react-firebase-hooks # | Let's you easily import the user and check if the
 * all the components are being passed into the Layout component which is then passed into the App.
 * We will take care to rectify this
 
-### TODO - ensure the quiz is only accessible from the private route
+[x] - ensure the quiz is only accessible from the private route
 
 * Currently, just inputing the right link will give you the quiz
 * Either move the entire quiz folder into the private folder or change the links
 
-### TODO - use-sound | an npm package for sound prompts
+[] - use-sound | an npm package for sound prompts
 
 This library only works in React DOM, but [@remigallego] created an alternative for React Native!
 Check out <https://github.com/remigallego/react-native-use-sound> react-native-use-sound.
 
 * TODO - We will look into implementing this feature at a later date; because NextJs currently does not support Audio rendering
 
-### TODO - Check the Navbar | Images tag should be used not img tag
+[x] - Check the Navbar | Images tag should be used not img tag
 
-This will fix the hydration ui issue.
+This will fix most of the hydration ui issue.
 
-### TODO - Remove the alert from the notification bell
+[] - Remove the alert from the notification bell
 
 Remove the alert after user has opened the message(s)
+
+[x] - Fix the style in login page
+
+Use the tailwindcss bg-color tag and not the inline style tag
+
+[x] Hydration Error caused by authentication state
+
+* Fix the authentication state for all the pages,
+* Make sure that authState is properly used where needed.
 
 ## NOTE - Add a token to the admin link
 
 Only those with the token will be able to see the admin login page
 
-### TODO - Fix the style in login page
+## NOTE - Working with react-three/fiber or react-three/drei for the About Pages
 
-Use the tailwindcss bg-color tag and not the inline style tag
+We can implement a features where the 2 canvases are in one page and each is revealed at different camera positions
 
-### NOTE - Hydration Error is caused by authentication state
-
-* Fix the authentication state for all the pages,
-* Make sure that authState is properly used where needed.
-
-#### Aside ---- Next.config.js by keerthika
+### Aside ---- Next.config.js by keerthika
 
 ```bash
 const nextConfig = {
@@ -119,3 +123,13 @@ module.exports = {
     domains: ['wallpapercave.com'], },
   nextConfig};
 ```
+
+### FIXME - If you encounter a server error on this app after making changes
+
+* If you have made changes to either the `package.json` file or the `next.config.js` file
+* and the app is not starting up, delete the **`.next`** folder and run - `npm run dev`.
+* If the issue is not fixed, contact the **`admin`** or **`team blueblood`**
+
+### STUB - This is an ongoing project by Team Blueblood 👻
+
+### LINK - [Genie](https://genie-bay.vercel.app/) or <https://genie-bay.vercel.app/>

@@ -36,17 +36,28 @@ function Geometries() {
 
 export default function About3() {
     return (
-        <Canvas camera={{ position: [0, 0, 22.5] }}>
-            <hemisphereLight groundColor="red" />
-            <Float floatIntensity={10} rotationIntensity={4}>
-                <Html castShadow receiveShadow occlude="blending" transform>
-                    <iframe title="embed" width={1200} height={700} src="https://teamblueblood.netlify.app/" frameBorder={0} />
-                </Html>
-            </Float>
-            <Geometries />
-            <Environment background preset="dawn" blur={0.8} />
-            <ContactShadows position={[0, -9, 0]} opacity={0.7} scale={40} blur={1} />
-            <OrbitControls />
-        </Canvas>
+        <>
+            <Canvas
+                camera={{ position: [0, 0, 22.5] }}
+                style={{
+                    position: "fixed",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                }}
+            >
+                <hemisphereLight groundColor="red" />
+                <Float floatIntensity={10} rotationIntensity={4}>
+                    <Html castShadow receiveShadow occlude="blending" transform>
+                        <iframe title="embed" width={1200} height={700} src="https://teamblueblood.netlify.app/" frameBorder={0} />
+                    </Html>
+                </Float>
+                <Geometries />
+                <Environment background preset="dawn" blur={0.8} />
+                <ContactShadows position={[0, -9, 0]} opacity={0.7} scale={40} blur={1} />
+                <OrbitControls />
+            </Canvas>
+        </>
     )
 }
